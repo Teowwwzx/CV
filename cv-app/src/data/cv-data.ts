@@ -120,6 +120,32 @@ export const cvData = {
       previewUrl: "https://thedzx.site",
       image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://thedzx.site",
+      credentials: {
+        email: "student@gmail.com or expert@gmail.com or admin@gmail.com",
+        password: "123123",
+      },
+    },
+    {
+      title: "Diploma Intern Assessment in 2023 (No AI)",
+      year: "2023",
+      description: "Fully Handmade with pure HTML & CSS",
+      tech: ["HTML5", "CSS3"],
+      previewUrl: "/Fintech/OVERWATCH/index.html",
+      image: "/Fintech/OVERWATCH/img/trading-indices.png",
+      link: "https://github.com/teowzx1/Fintech-Landing-Page",
+    },
+    {
+      title: "Simple Membership System (Real Project b4)",
+      year: "202x",
+      description: "",
+      tech: ["Flask"],
+      previewUrl: "https://affiliateloginsystem-production.up.railway.app/admin/dashboard",
+      image: "/Fintech/OVERWATCH/img/trading-indices.png",
+      link: "https://affiliateloginsystem-production.up.railway.app/admin/dashboard",
+      credentials: {
+        email: " admin@gmail.com or usertest@gmail.com",
+        password: "atoz@123 or 123123",
+      },
     },
     {
       title: "Payroll Management System (CLI Only)",
@@ -130,6 +156,7 @@ export const cvData = {
       image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://github.com/Teowwwzx/DCOMToSchool.git",
     },
+    
     {
       title: "Decentralized Supply Chain Marketplaces (Bad Project)",
       year: "2026",
@@ -148,15 +175,7 @@ export const cvData = {
       image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://github.com/teowzx1/Learning-Platform",
     },
-    {
-      title: "Fintech Landing Page - Intern Assessment in 2023 (No AI)",
-      year: "2023",
-      description: "Fully Handmade with pure HTML & CSS",
-      tech: ["HTML5", "CSS3"],
-      previewUrl: "/Fintech/OVERWATCH/index.html",
-      image: "/Fintech/OVERWATCH/img/trading-indices.png",
-      link: "https://github.com/teowzx1/Fintech-Landing-Page",
-    },
+    
   ],
   leadership: [
     {
@@ -165,7 +184,7 @@ export const cvData = {
       description:
         "Handle >70% Tasks haizzz, Find Speaker, Collaborate with Clubs, Marketing (Find Business People), Draf All Paperwork like Email Confirmation & Appreciation & Speech, Event Flow, Event Topic, Find Sponsor",
       image: "/Fintech/OVERWATCH/img/trading-indices.png",
-      link: "https://www.youtube.com/watch?v=1234567890",
+      link: "https://www.instagram.com/reel/DNDH1mFzKV9/",
     },
     { name: "MAFC", year: "2023" },
     {

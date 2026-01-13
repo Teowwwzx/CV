@@ -37,6 +37,10 @@ type Project = {
   previewUrl: string;
   image?: string;
   link?: string;
+  credentials?: {
+    email: string;
+    password: string;
+  };
 };
 
 type Skill = {
@@ -98,7 +102,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50 bg-dot-pattern text-slate-800 font-sans selection:bg-blue-100 selection:text-blue-900">
       <div className="bg-yellow-100 border-b border-yellow-200 text-yellow-800 px-4 py-3 text-center sticky top-0 z-50 shadow-sm">
         <p className="text-sm md:text-base font-medium flex items-center justify-center gap-2">
-           🚧 <span className="font-bold">Work in Progress:</span> This CV is currently being updated.
+           🚧 <span className="font-bold">Work in Progress:</span> This CV is currently being updated (Created in 15min).
         </p>
       </div>
       <ImageGalleryModal
@@ -336,6 +340,14 @@ export default function Home() {
                             <p className="text-slate-600 mb-4 leading-relaxed">
                               {project.description}
                             </p>
+                            {project.credentials && (
+                              <div className="text-xs text-slate-600 bg-white border border-slate-200 rounded-lg p-3 mb-4">
+                                <div className="font-semibold text-slate-800 mb-1">Demo Credentials</div>
+                                <div className="font-mono break-all">
+                                  {project.credentials.email} / {project.credentials.password}
+                                </div>
+                              </div>
+                            )}
                           </div>
                           
                           <div className="flex flex-wrap gap-2 mt-auto">
