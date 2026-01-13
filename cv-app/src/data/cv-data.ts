@@ -1,0 +1,184 @@
+export const cvData = {
+  personalInfo: {
+    name: "Teow Zhen Xiang",
+    role: "IT (Fintech) Student | Aspiring DevOps & Full Stack Developer",
+    bio: "Hello, I'm an IT (Fintech) student and a self-motivated person that like to explore different knowledge. Also, passionate in solving problem with teamwork with a track records of organizing successful high-quality!",
+    phone: "+601110662491",
+    website: "thedzx.site/cv",
+    email: "teowzx1@gmail.com",
+    address: {
+      rent: "Bukit Jalil, Kuala Lumpur (Rent House)",
+      home: "Iskandar Puteri, Johor (Home)",
+    },
+    image: "/file.jpg",
+  },
+  education: [
+    {
+      institution: "Asia Pacific University",
+      period: "2024 - 2026",
+      degree: "Degree in IT (Financial Technology)",
+    },
+    {
+      institution: "Asia Pacific University",
+      period: "2021 - 2024",
+      degree: "Diploma in IT (Software Engineering)",
+    },
+  ],
+  expertise: {
+    Foundation: [
+      {
+        name: "HTML, CSS",
+        rating: 4.5,
+        link: "https://developer.mozilla.org/en-US/docs/Learn/HTML",
+      },
+      { name: "JavaScript", rating: 3.0 },
+      { name: "Database Schema", rating: 4.5 },
+    ],
+    "Full Stack": [
+      { name: "Python: Flask, FastAPI", rating: 3.5 },
+      { name: "PHP: Laravel", rating: 3.5 },
+      { name: "Next.js", rating: 3.5 },
+      { name: "Solidity", rating: 3 },
+      { name: "Tailwind CSS", rating: 3 },
+      { name: "Bootstrap", rating: 3.5 },
+    ],
+    DevOps: [
+      { name: "AWS, Digital Ocean", rating: 3.5 },
+      { name: "Docker, Linux, WSL", rating: 4 },
+    ],
+    "AI Tools": [
+      { name: "Windsurf, Cursor, ClaudeCode", rating: 4.5 },
+      { name: "Trae, Antigravity", rating: 4 },
+      { name: "Google AI Ecosystem, N8N", rating: 3.5 },
+    ],
+    Others: [
+      {
+        name: "Figma, Canva",
+        rating: 4,
+        link: "https://www.figma.com/design/oQZNG9cjgZtgqkTLyzC6vE/POS-LAMBAT-POS-System?node-id=0-1&t=UTdmv2k9At7kPKtJ-1",
+      },
+      { name: "DaVinci Resolve", rating: 4 },
+      { name: "Microsoft Office", rating: 4.5 },
+    ],
+  },
+  languages: [
+    { name: "English & Malay", rating: 3.5, max: 5 },
+    { name: "Mandarin", rating: 4.5, max: 5 },
+  ],
+  experience: [
+    {
+      id: "alitec-2025",
+      year: "2025",
+      duration: "4 Months",
+      company: "Alitec Solutions Sdn Bhd",
+      role: "DevOps Degree Intern",
+      images: ["/cv/degree-rating-1.png", "/cv/degree-rating-2.png"],
+      details: [
+        "Manage Cloud Servers such as AWS, Digital Ocean and Cloudpepper.",
+      ],
+      hasDetails: true,
+    },
+    {
+      id: "tesla-2024",
+      year: "2024",
+      duration: "2 Months",
+      company: "Mid Valley Southkey",
+      role: "Tesla Promoter",
+      images: ["/cv/tesla.mp4"],
+      details: [
+        "Promote Tesla and Conducted Customer Surveys (Achieved Full KPI)",
+      ],
+    },
+    {
+      id: "techtics-2023",
+      year: "2023",
+      duration: "2 Months",
+      company: "Techtics Solutions Sdn Bhd",
+      role: "Full Stack Diploma Intern",
+      images: ["/cv/diploma-rating-1.png"],
+      details: [
+        "Develop a Membership System using Laravel, Bootstrap and Tailwind.",
+      ],
+      hasDetails: true,
+    },
+  ],
+  projects: [
+    {
+      title: "FYP - 'Event Management Platform' (I Love AI)",
+      year: "2026",
+      description: "Fully Handmade Database Schema",
+      tech: [
+        "Next.js",
+        "FastAPI",
+        "AI Integration",
+        "GetStream",
+        "Cloudinary",
+        "Google OAuth",
+        "Place API",
+      ],
+      previewUrl: "/cv/Fintech/OVERWATCH/index.html",
+      image: "/cv/Fintech/OVERWATCH/img/trading-indices.png",
+      link: "https://github.com/teowzx1/Event-Management-Platform",
+    },
+    {
+      title: "Payroll Management System (CLI Only)",
+      year: "2026",
+      description: "",
+      tech: ["Java"],
+      previewUrl: "/cv/Fintech/OVERWATCH/index.html",
+      image: "/cv/Fintech/OVERWATCH/img/trading-indices.png",
+      link: "https://github.com/teowzx1/Payroll-Management-System",
+    },
+    {
+      title: "Decentralized Supply Chain Marketplaces (Bad Project)",
+      year: "2026",
+      description: "",
+      tech: ["Next.js", "Solidity"],
+      previewUrl: "/cv/Fintech/OVERWATCH/index.html",
+      image: "/cv/Fintech/OVERWATCH/img/trading-indices.png",
+      link: "https://github.com/teowzx1/Decentralized-Supply-Chain-Marketplaces",
+    },
+    {
+      title: "Learning Platform (Bad Project)",
+      year: "2025",
+      description: "",
+      tech: ["ASP.NET", "Bootstrap"],
+      previewUrl: "/cv/Fintech/OVERWATCH/index.html",
+      image: "/cv/Fintech/OVERWATCH/img/trading-indices.png",
+      link: "https://github.com/teowzx1/Learning-Platform",
+    },
+    {
+      title: "Fintech Landing Page - Intern Assessment in 2023 (No AI)",
+      year: "2023",
+      description: "Fully Handmade with pure HTML & CSS",
+      tech: ["HTML5", "CSS3"],
+      previewUrl: "/cv/Fintech/OVERWATCH/index.html",
+      image: "/cv/Fintech/OVERWATCH/img/trading-indices.png",
+      link: "https://github.com/teowzx1/Fintech-Landing-Page",
+    },
+  ],
+  leadership: [
+    {
+      name: "AI x Blockchain Panel Discussion",
+      year: "2025",
+      description:
+        "Handle >70% Tasks haizzz, Find Speaker, Collaborate with Clubs, Marketing (Find Business People), Draf All Paperwork like Email Confirmation & Appreciation & Speech, Event Flow, Event Topic, Find Sponsor",
+      image: "/cv/Fintech/OVERWATCH/img/trading-indices.png",
+      link: "https://www.youtube.com/watch?v=1234567890",
+    },
+    { name: "MAFC", year: "2023" },
+    {
+      name: "APU Championship",
+      year: "2022",
+      description:
+        "Handle >70% Tasks from Design -> Marketing -> Integrate Pick & Ban System -> Find Commentator -> ",
+      video: "/cv/obs-stream.mp4",
+    },
+    { name: "JB Drums Holiday Camp", year: "2022" },
+    {
+      name: "Malaysia 24 Festive Drums National Championship",
+      year: "2019 & 2024",
+      role: "Lead School Team",
+    },
+  ],
+};
