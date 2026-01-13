@@ -3,7 +3,6 @@
 import { X, ChevronLeft, ChevronRight, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 interface ImageGalleryModalProps {
   isOpen: boolean;
@@ -26,7 +25,6 @@ export default function ImageGalleryModal({
 
   useEffect(() => {
     if (isOpen) {
-      setCurrentIndex(initialIndex);
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -34,7 +32,7 @@ export default function ImageGalleryModal({
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [isOpen, initialIndex]);
+  }, [isOpen]);
 
   const nextImage = (e?: React.MouseEvent) => {
     e?.stopPropagation();
@@ -112,7 +110,7 @@ export default function ImageGalleryModal({
             className="relative w-full max-w-5xl h-[80vh] flex items-center justify-center"
           >
              {/* Render Image or Video based on file extension */}
-            {images[currentIndex].toLowerCase().endsWith('.mp4') ? (
+            {images[currentIndex]?.toLowerCase().endsWith('.mp4') ? (
                <video
                  src={images[currentIndex]}
                  controls
@@ -138,7 +136,7 @@ export default function ImageGalleryModal({
                      }}
                      className={`w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${idx === currentIndex ? 'border-blue-500 scale-110' : 'border-transparent opacity-50 hover:opacity-100'}`}
                    >
-                      {img.toLowerCase().endsWith('.mp4') ? (
+                      {img?.toLowerCase().endsWith('.mp4') ? (
                          <div className="w-full h-full bg-slate-800 flex items-center justify-center text-white text-[8px]">Video</div>
                       ) : (
                          <img src={img} alt="" className="w-full h-full object-cover" />

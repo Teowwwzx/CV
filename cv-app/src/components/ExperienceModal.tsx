@@ -2,13 +2,22 @@
 
 import { X, Calendar, Building, FileText, Download, Video } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ImageGalleryModal from "./ImageGalleryModal";
+
+type Experience = {
+  role: string;
+  company: string;
+  year: string;
+  duration: string;
+  details?: string[];
+  images?: string[];
+};
 
 interface ExperienceModalProps {
   isOpen: boolean;
   onClose: () => void;
-  experience: any;
+  experience: Experience | null;
 }
 
 export default function ExperienceModal({
@@ -20,20 +29,12 @@ export default function ExperienceModal({
   const [currentImages, setCurrentImages] = useState<string[]>([]);
   const [initialIndex, setInitialIndex] = useState(0);
 
-  // Prevent scrolling when modal is open
-  if (typeof window !== "undefined") {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else if (!galleryOpen) {
-        // Only restore scrolling if gallery is also closed (gallery handles its own body scroll)
-        // Actually ImageGalleryModal handles it too. 
-        // If ExperienceModal is open, body should be hidden.
-        // If Gallery is open (on top of Experience), body should still be hidden.
-        // So we can leave this here, but ImageGalleryModal also sets overflow hidden.
-        // It's fine.
-       document.body.style.overflow = "unset";
-    }
-  }
+  useEffect(() => {
+    document.body.style.overflow = isOpen || galleryOpen ? "hidden" : "unset";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen, galleryOpen]);
 
   if (!experience) return null;
 
@@ -118,7 +119,7 @@ export default function ExperienceModal({
                         onClick={() => openGallery(experience.images!, idx)}
                         className="aspect-square bg-slate-100 rounded-xl overflow-hidden cursor-pointer hover:opacity-90 transition-opacity border border-slate-200 relative group"
                       >
-                        {img.toLowerCase().endsWith('.mp4') ? (
+                        {img?.toLowerCase().endsWith('.mp4') ? (
                            <div className="w-full h-full flex items-center justify-center bg-slate-800 text-white group-hover:bg-slate-700 transition-colors">
                               <Video size={32} />
                            </div>

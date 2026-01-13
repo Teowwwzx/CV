@@ -1,17 +1,14 @@
 "use client";
 
 import { cvData } from "@/data/cv-data";
-import { Mail, Phone, Globe, MapPin, Download, ExternalLink, ChevronRight, Award, GraduationCap, Briefcase, Code, Languages, Image as ImageIcon, FileText } from "lucide-react";
-import Link from "next/link";
+import { Mail, Phone, Globe, MapPin, ExternalLink, ChevronRight, Award, Briefcase, Code, Image as ImageIcon, FileText, Github, MessageCircle, Layers, Monitor } from "lucide-react";
 import { motion } from "framer-motion";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { useState } from "react";
 import ImageGalleryModal from "@/components/ImageGalleryModal";
 import WebPreviewModal from "@/components/WebPreviewModal";
-import ExperienceModal from "@/components/ExperienceModal";
 import LeadershipModal from "@/components/LeadershipModal";
-import { Layers, Monitor } from "lucide-react";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -32,25 +29,51 @@ const item = {
   show: { opacity: 1, y: 0 },
 };
 
+type Project = {
+  title: string;
+  year: string;
+  description: string;
+  tech: string[];
+  previewUrl: string;
+  image?: string;
+  link?: string;
+};
+
+type Skill = {
+  name: string;
+  rating: number;
+  link?: string;
+  image?: string;
+  max?: number;
+};
+
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImages, setCurrentImages] = useState<string[]>([]);
   const [initialImageIndex, setInitialImageIndex] = useState(0);
   const [modalTitle, setModalTitle] = useState("");
+  const [galleryInstance, setGalleryInstance] = useState(0);
 
   const [webPreviewOpen, setWebPreviewOpen] = useState(false);
   const [webPreviewUrl, setWebPreviewUrl] = useState("");
   const [webPreviewTitle, setWebPreviewTitle] = useState("");
-
-  const [experienceModalOpen, setExperienceModalOpen] = useState(false);
-  const [selectedExperience, setSelectedExperience] = useState<any>(null);
+  const [webPreviewInstance, setWebPreviewInstance] = useState(0);
 
   const [leadershipModalOpen, setLeadershipModalOpen] = useState(false);
+
+  const projects = cvData.projects as unknown as Project[];
+  const expertiseEntries = Object.entries(cvData.expertise) as [string, Skill[]][];
+
+  const whatsappPhoneDigits = cvData.personalInfo.phone.replace(/\D/g, "");
+  const whatsappUrl = `https://wa.me/${whatsappPhoneDigits}?text=${encodeURIComponent(
+    "Hi Teow, I found your CV and would like to connect."
+  )}`;
 
   const openWebPreview = (url: string, title: string) => {
     setWebPreviewUrl(url);
     setWebPreviewTitle(title);
     setWebPreviewOpen(true);
+    setWebPreviewInstance((prev) => prev + 1);
   };
 
   const openGallery = (images: string[], index: number = 0, title: string = "") => {
@@ -59,11 +82,16 @@ export default function Home() {
     setInitialImageIndex(index);
     setModalTitle(title);
     setModalOpen(true);
+    setGalleryInstance((prev) => prev + 1);
   };
 
-  const openExperienceModal = (experience: any) => {
-    setSelectedExperience(experience);
-    setExperienceModalOpen(true);
+  const openProjectPreview = (url: string, title: string) => {
+    const lowerUrl = url.toLowerCase();
+    if (lowerUrl.includes("github.com")) {
+      window.open(url, "_blank", "noopener,noreferrer");
+      return;
+    }
+    openWebPreview(url, title);
   };
 
   return (
@@ -74,6 +102,7 @@ export default function Home() {
         </p>
       </div>
       <ImageGalleryModal
+        key={galleryInstance}
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         images={currentImages}
@@ -81,15 +110,11 @@ export default function Home() {
         title={modalTitle}
       />
       <WebPreviewModal
+        key={webPreviewInstance}
         isOpen={webPreviewOpen}
         onClose={() => setWebPreviewOpen(false)}
         url={webPreviewUrl}
         title={webPreviewTitle}
-      />
-      <ExperienceModal
-        isOpen={experienceModalOpen}
-        onClose={() => setExperienceModalOpen(false)}
-        experience={selectedExperience}
       />
       <LeadershipModal
         isOpen={leadershipModalOpen}
@@ -118,10 +143,12 @@ export default function Home() {
 
             <div className="flex flex-wrap gap-4 mt-8">
               <a
-                href={`mailto:${cvData.personalInfo.email}`}
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-colors shadow-sm"
               >
-                <Mail size={16} /> Contact Me
+                <MessageCircle size={16} /> WhatsApp Me
               </a>
               <a
                 href={`https://${cvData.personalInfo.website}`}
@@ -129,6 +156,14 @@ export default function Home() {
                 className="inline-flex items-center gap-2 px-4 py-2 bg-white text-slate-900 border border-slate-200 rounded-full hover:bg-slate-50 transition-colors shadow-sm"
               >
                 <Globe size={16} /> Portfolio
+              </a>
+              <a
+                href={cvData.personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white text-slate-900 border border-slate-200 rounded-full hover:bg-slate-50 transition-colors shadow-sm"
+              >
+                <Github size={16} /> GitHub
               </a>
             </div>
           </div>
@@ -186,6 +221,7 @@ export default function Home() {
                     {exp.images && exp.images.length > 0 ? (
                       <div className="flex flex-wrap gap-3 mb-4">
                         {exp.images.slice(0, 4).map((img, idx) => {
+                          if (!img) return null;
                           const isPdf = img.toLowerCase().endsWith('.pdf');
                           const isVideo = img.toLowerCase().endsWith('.mp4');
                           return (
@@ -260,13 +296,13 @@ export default function Home() {
                 </h2>
 
                 <div className="grid grid-cols-1 gap-8">
-                  {cvData.projects.map((project, index) => (
+                  {projects.map((project, index) => (
                     <div key={index} className="group relative bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 hover:shadow-lg hover:border-blue-200 transition-all duration-300">
                       <div className="flex flex-col md:flex-row h-full">
                         {/* Project Image / Thumbnail */}
                         <div 
                           className="w-full md:w-2/5 h-48 md:h-auto bg-slate-200 relative cursor-pointer overflow-hidden"
-                          onClick={() => openWebPreview(project.previewUrl, project.title)}
+                          onClick={() => openProjectPreview(project.previewUrl, project.title)}
                         >
                           {project.image ? (
                             <img 
@@ -358,11 +394,11 @@ export default function Home() {
               <p className="text-sm text-slate-300 mb-6 relative z-10">With AI nothing is impossible</p>
 
               <div className="space-y-8 relative z-10">
-                {Object.entries(cvData.expertise).map(([category, skills]) => (
+                {expertiseEntries.map(([category, skills]) => (
                   <div key={category}>
                     <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">{category}</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {[...skills].sort((a, b) => b.rating - a.rating).map((skill: any) => (
+                      {[...skills].sort((a, b) => b.rating - a.rating).map((skill) => (
                         <div
                           key={skill.name}
                           onClick={() => {
