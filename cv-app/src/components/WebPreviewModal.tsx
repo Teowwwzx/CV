@@ -24,7 +24,6 @@ export default function WebPreviewModal({
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
-      setIsMaximized(false);
     }
     return () => {
       document.body.style.overflow = "unset";

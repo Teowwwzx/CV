@@ -2,7 +2,7 @@
 
 import { X, Award, Calendar, Image as ImageIcon, Video, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ImageGalleryModal from "./ImageGalleryModal";
 import { cvData } from "@/data/cv-data";
 
@@ -10,6 +10,16 @@ interface LeadershipModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
+type LeadershipActivity = {
+  name: string;
+  year: string;
+  role?: string;
+  description?: string;
+  images?: string[];
+  video?: string;
+  link?: string;
+};
 
 export default function LeadershipModal({
   isOpen,
@@ -20,6 +30,11 @@ export default function LeadershipModal({
   const [initialIndex, setInitialIndex] = useState(0);
   const [galleryTitle, setGalleryTitle] = useState("");
 
+  const leadership = useMemo(
+    () => cvData.leadership as unknown as LeadershipActivity[],
+    []
+  );
+
   const openGallery = (images: string[], index: number, title: string) => {
     setCurrentImages(images);
     setInitialIndex(index);
@@ -27,14 +42,12 @@ export default function LeadershipModal({
     setGalleryOpen(true);
   };
 
-  // Prevent scrolling when modal is open
-  if (typeof window !== "undefined") {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else if (!galleryOpen) {
-       document.body.style.overflow = "unset";
-    }
-  }
+  useEffect(() => {
+    document.body.style.overflow = isOpen || galleryOpen ? "hidden" : "unset";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen, galleryOpen]);
 
   return (
     <AnimatePresence>
@@ -73,7 +86,7 @@ export default function LeadershipModal({
             </div>
 
             <div className="p-8 md:p-10 grid gap-6">
-              {cvData.leadership.map((activity: any, index) => (
+              {leadership.map((activity, index) => (
                 <div 
                   key={index}
                   className="bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-100 flex flex-col md:flex-row gap-6 items-start md:items-center transition-all hover:border-blue-200 hover:shadow-sm"
@@ -97,26 +110,23 @@ export default function LeadershipModal({
                     </p>
 
                      <div className="flex flex-wrap items-center gap-3">
-                       {/* @ts-ignore */}
-                       {activity.images && activity.images.length > 0 && (
+                       {activity.images?.length ? (
                           <button 
                             onClick={() => openGallery(activity.images!, 0, activity.name)}
                             className="flex items-center gap-1.5 text-xs font-medium text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full hover:bg-blue-100 transition-colors"
                           >
                              <ImageIcon size={14} /> Photos
                           </button>
-                       )}
-                       {/* @ts-ignore */}
-                       {activity.video && (
+                       ) : null}
+                       {activity.video ? (
                           <button 
                             onClick={() => openGallery([activity.video!], 0, activity.name)}
                             className="flex items-center gap-1.5 text-xs font-medium text-red-600 bg-red-50 px-3 py-1.5 rounded-full hover:bg-red-100 transition-colors"
                           >
                              <Video size={14} /> Video
                           </button>
-                       )}
-                        {/* @ts-ignore */}
-                        {activity.link && (
+                       ) : null}
+                        {activity.link ? (
                           <a 
                             href={activity.link}
                             target="_blank"
@@ -125,7 +135,7 @@ export default function LeadershipModal({
                           >
                              <ExternalLink size={14} /> Link
                           </a>
-                       )}
+                       ) : null}
                      </div>
                   </div>
                 </div>
