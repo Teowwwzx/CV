@@ -4,7 +4,7 @@ export const cvData = {
     role: "IT (Fintech) Student | Aspiring DevOps & Full Stack Developer",
     bio: "Hello, I'm an IT (Fintech) student and a self-motivated person that like to explore different knowledge. Also, passionate in solving problem with teamwork with a track records of organizing successful high-quality!",
     phone: "+601110662491",
-    website: "thedzx.site/cv",
+    website: "cv.thedzx.site",
     email: "teowzx1@gmail.com",
     address: {
       rent: "Bukit Jalil, Kuala Lumpur (Rent House)",
@@ -72,7 +72,7 @@ export const cvData = {
       duration: "4 Months",
       company: "Alitec Solutions Sdn Bhd",
       role: "DevOps Degree Intern",
-      images: ["/cv/degree-rating-1.png", "/cv/degree-rating-2.png"],
+      images: ["/degree-rating-1.png", "/degree-rating-2.png"],
       details: [
         "Manage Cloud Servers such as AWS, Digital Ocean and Cloudpepper.",
       ],
@@ -84,7 +84,7 @@ export const cvData = {
       duration: "2 Months",
       company: "Mid Valley Southkey",
       role: "Tesla Promoter",
-      images: ["/cv/tesla.mp4"],
+      images: ["/tesla.mp4"],
       details: [
         "Promote Tesla and Conducted Customer Surveys (Achieved Full KPI)",
       ],
@@ -95,7 +95,7 @@ export const cvData = {
       duration: "2 Months",
       company: "Techtics Solutions Sdn Bhd",
       role: "Full Stack Diploma Intern",
-      images: ["/cv/diploma-rating-1.png"],
+      images: ["/diploma-rating-1.png"],
       details: [
         "Develop a Membership System using Laravel, Bootstrap and Tailwind.",
       ],
@@ -116,8 +116,8 @@ export const cvData = {
         "Google OAuth",
         "Place API",
       ],
-      previewUrl: "/cv/Fintech/OVERWATCH/index.html",
-      image: "/cv/Fintech/OVERWATCH/img/trading-indices.png",
+      previewUrl: "/Fintech/OVERWATCH/index.html",
+      image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://github.com/teowzx1/Event-Management-Platform",
     },
     {
@@ -125,8 +125,8 @@ export const cvData = {
       year: "2026",
       description: "",
       tech: ["Java"],
-      previewUrl: "/cv/Fintech/OVERWATCH/index.html",
-      image: "/cv/Fintech/OVERWATCH/img/trading-indices.png",
+      previewUrl: "/Fintech/OVERWATCH/index.html",
+      image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://github.com/teowzx1/Payroll-Management-System",
     },
     {
@@ -134,8 +134,8 @@ export const cvData = {
       year: "2026",
       description: "",
       tech: ["Next.js", "Solidity"],
-      previewUrl: "/cv/Fintech/OVERWATCH/index.html",
-      image: "/cv/Fintech/OVERWATCH/img/trading-indices.png",
+      previewUrl: "/Fintech/OVERWATCH/index.html",
+      image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://github.com/teowzx1/Decentralized-Supply-Chain-Marketplaces",
     },
     {
@@ -143,8 +143,8 @@ export const cvData = {
       year: "2025",
       description: "",
       tech: ["ASP.NET", "Bootstrap"],
-      previewUrl: "/cv/Fintech/OVERWATCH/index.html",
-      image: "/cv/Fintech/OVERWATCH/img/trading-indices.png",
+      previewUrl: "/Fintech/OVERWATCH/index.html",
+      image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://github.com/teowzx1/Learning-Platform",
     },
     {
@@ -152,8 +152,8 @@ export const cvData = {
       year: "2023",
       description: "Fully Handmade with pure HTML & CSS",
       tech: ["HTML5", "CSS3"],
-      previewUrl: "/cv/Fintech/OVERWATCH/index.html",
-      image: "/cv/Fintech/OVERWATCH/img/trading-indices.png",
+      previewUrl: "/Fintech/OVERWATCH/index.html",
+      image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://github.com/teowzx1/Fintech-Landing-Page",
     },
   ],
@@ -163,7 +163,7 @@ export const cvData = {
       year: "2025",
       description:
         "Handle >70% Tasks haizzz, Find Speaker, Collaborate with Clubs, Marketing (Find Business People), Draf All Paperwork like Email Confirmation & Appreciation & Speech, Event Flow, Event Topic, Find Sponsor",
-      image: "/cv/Fintech/OVERWATCH/img/trading-indices.png",
+      image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://www.youtube.com/watch?v=1234567890",
     },
     { name: "MAFC", year: "2023" },
@@ -172,7 +172,7 @@ export const cvData = {
       year: "2022",
       description:
         "Handle >70% Tasks from Design -> Marketing -> Integrate Pick & Ban System -> Find Commentator -> ",
-      video: "/cv/obs-stream.mp4",
+      video: "/obs-stream.mp4",
     },
     { name: "JB Drums Holiday Camp", year: "2022" },
     {

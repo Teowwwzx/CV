@@ -68,6 +68,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 bg-dot-pattern text-slate-800 font-sans selection:bg-blue-100 selection:text-blue-900">
+      <div className="bg-yellow-100 border-b border-yellow-200 text-yellow-800 px-4 py-3 text-center sticky top-0 z-50 shadow-sm">
+        <p className="text-sm md:text-base font-medium flex items-center justify-center gap-2">
+           🚧 <span className="font-bold">Work in Progress:</span> This CV is currently being updated.
+        </p>
+      </div>
       <ImageGalleryModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
