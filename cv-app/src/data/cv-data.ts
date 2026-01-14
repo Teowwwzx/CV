@@ -1,3 +1,5 @@
+import { image } from "framer-motion/client";
+
 export const cvData = {
   personalInfo: {
     name: "Teow Zhen Xiang",
@@ -174,27 +176,41 @@ export const cvData = {
     {
       name: "AI x Blockchain Panel Discussion",
       year: "2025",
-      tags: ["leadership", "event", "marketing"],
+      tags: ["leadership", "marketing"],
       description:
-        "Handle >70% Tasks haizzz, Find Speaker, Collaborate with Clubs, Marketing (Find Business People), Draf All Paperwork like Email Confirmation & Appreciation & Speech, Event Flow, Event Topic, Find Sponsor",
-      image: "/Fintech/OVERWATCH/img/trading-indices.png",
+        "Handle Find Speaker & Business & Sponsor People, Collaborate with Clubs, Marketing, All Paperwork like Emails & Speech, Event Flow & Topic",
+      // image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://www.instagram.com/reel/DNDH1mFzKV9/",
+      video: "https://www.instagram.com/reel/DNDH1mFzKV9/",
     },
-    { name: "MAFC", year: "2023", tags: ["leadership", "community"] },
+    { name: "MAFC", year: "2023", tags: ["teamwork"] },
     {
       name: "APU Championship",
       year: "2022",
-      tags: ["leadership", "creative", "event"],
+      tags: ["planning team", "media"],
       description:
-        "Handle >70% Tasks from Design -> Marketing -> Integrate Pick & Ban System -> Find Commentator -> ",
+        "Handle Design & Video Editing, Marketing, Integrate Pick & Ban System (Github), Find Commentator ",
       video: "/obs-stream.mp4",
+      link: "https://www.instagram.com/tv/CdC42Rqlz1A/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     },
-    { name: "JB Drums Holiday Camp", year: "2022", tags: ["creative", "teamwork"] },
     {
       name: "Malaysia 24 Festive Drums National Championship",
       year: "2019 & 2024",
-      role: "Lead School Team",
+      description:
+        "Gather and Lead School Team from an impossible situation to successfully join and get silver medal due to Sekolah Kebangsaan is lack of resouces (people, money, no support from school) to compete with Chinese Independent High School. It is always a miracle for us",
       tags: ["leadership", "creative"],
+      image: "/24-festive-drum-2022.jpg",
+      link: "https://youtu.be/VyPBwZTXmTs?si=LpWeSt0XQtLRK4-d&t=63",
+      media: [
+        "/24-festive-drum-2022.jpg",
+        "https://youtu.be/VyPBwZTXmTs?si=LpWeSt0XQtLRK4-d&t=63",
+      ],
     },
+    { name: "JB Drums Holiday Camp", 
+      year: "2022",
+      description:
+        "Plan Activities",
+      tags: ["creative", "teamwork"] 
+    }
   ],
 };

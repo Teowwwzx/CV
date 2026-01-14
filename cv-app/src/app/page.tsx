@@ -1,14 +1,13 @@
 "use client";
 
 import { cvData } from "@/data/cv-data";
-import { Mail, Phone, Globe, MapPin, ExternalLink, ChevronRight, Award, Briefcase, Code, Image as ImageIcon, FileText, Github, MessageCircle, Layers, Monitor } from "lucide-react";
+import { Mail, Phone, Globe, MapPin, ExternalLink, Award, Briefcase, Code, Image as ImageIcon, FileText, Github, MessageCircle, Layers, Monitor, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { useState } from "react";
 import ImageGalleryModal from "@/components/ImageGalleryModal";
 import WebPreviewModal from "@/components/WebPreviewModal";
-import LeadershipModal from "@/components/LeadershipModal";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -57,6 +56,8 @@ type LeadershipActivity = {
   role?: string;
   description?: string;
   image?: string;
+  images?: string[];
+  media?: string[];
   video?: string;
   link?: string;
   tags?: string[];
@@ -73,8 +74,6 @@ export default function Home() {
   const [webPreviewUrl, setWebPreviewUrl] = useState("");
   const [webPreviewTitle, setWebPreviewTitle] = useState("");
   const [webPreviewInstance, setWebPreviewInstance] = useState(0);
-
-  const [leadershipModalOpen, setLeadershipModalOpen] = useState(false);
 
   const projects = cvData.projects as unknown as Project[];
   const expertiseEntries = Object.entries(cvData.expertise) as [string, Skill[]][];
@@ -132,10 +131,7 @@ export default function Home() {
         url={webPreviewUrl}
         title={webPreviewTitle}
       />
-      <LeadershipModal
-        isOpen={leadershipModalOpen}
-        onClose={() => setLeadershipModalOpen(false)}
-      />
+      
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
 
@@ -416,28 +412,12 @@ export default function Home() {
                     className="p-5 rounded-2xl bg-slate-50 hover:bg-blue-50 transition-colors border border-slate-100"
                   >
                     <div className="flex items-start gap-5">
-                      <div className="w-20 h-20 rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm shrink-0 flex items-center justify-center">
-                        {activity.image ? (
-                          <img src={activity.image} alt="" className="w-full h-full object-cover" />
-                        ) : activity.video ? (
-                          <div className="w-full h-full bg-slate-900 flex items-center justify-center text-white text-xs font-semibold">
-                            Video Clip
-                          </div>
-                        ) : (
-                          <Award size={20} className="text-blue-600" />
-                        )}
-                      </div>
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                           <div className="min-w-0">
                             <div className="font-bold text-slate-900 text-lg leading-snug">{activity.name}</div>
                             <div className="text-sm text-slate-500 mt-1">{activity.year}</div>
                           </div>
-                          {activity.role ? (
-                            <div className="text-xs font-semibold text-blue-600 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-full shrink-0">
-                              {activity.role}
-                            </div>
-                          ) : null}
                         </div>
                         {activity.tags?.length ? (
                           <div className="flex flex-wrap gap-2 mt-3">
@@ -453,26 +433,115 @@ export default function Home() {
                             {activity.description}
                           </p>
                         ) : null}
-                        <div className="mt-4">
-                          <button
-                            onClick={() => setLeadershipModalOpen(true)}
-                            className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                          >
-                            View details →
-                          </button>
-                        </div>
+                        {(() => {
+                          const rawMedia = (
+                            activity.media?.length
+                              ? activity.media
+                              : [
+                                  ...(activity.images ?? []),
+                                  activity.image,
+                                  activity.video,
+                                  activity.link,
+                                ]
+                          ).filter(Boolean) as string[];
+
+                          const media = Array.from(new Set(rawMedia));
+                          if (!media.length) return null;
+
+                          const items = media.map((url) => {
+                            const lower = url.toLowerCase();
+                            const isInstagram = lower.includes("instagram.com");
+                            const isYoutube = lower.includes("youtu.be") || lower.includes("youtube.com");
+                            const isPdf = lower.endsWith(".pdf");
+                            const isVideo = lower.endsWith(".mp4");
+                            const isExternal = /^https?:\/\//i.test(url);
+                            const kind: "instagram" | "youtube" | "pdf" | "video" | "image" | "link" =
+                              isInstagram
+                                ? "instagram"
+                                : isYoutube
+                                  ? "youtube"
+                                  : isPdf
+                                    ? "pdf"
+                                    : isVideo
+                                      ? "video"
+                                      : isExternal
+                                        ? "link"
+                                        : "image";
+                            return { url, kind };
+                          });
+
+                          const galleryMedia = items
+                            .filter((item) => item.kind === "image" || item.kind === "video")
+                            .map((item) => item.url);
+
+                          return (
+                            <div className="flex flex-wrap gap-3 mt-4">
+                              {items.slice(0, 4).map((item, itemIndex) => {
+                                const onClick = () => {
+                                  if (item.kind === "instagram" || item.kind === "youtube" || item.kind === "link" || item.kind === "pdf") {
+                                    window.open(item.url, "_blank", "noopener,noreferrer");
+                                    return;
+                                  }
+                                  const galleryIndex = galleryMedia.indexOf(item.url);
+                                  if (galleryIndex >= 0) openGallery(galleryMedia, galleryIndex, activity.name);
+                                };
+
+                                return (
+                                  <motion.div
+                                    key={`${item.url}-${itemIndex}`}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={onClick}
+                                    className="cursor-pointer rounded-lg overflow-hidden border border-slate-200 shadow-sm w-24 h-24 relative flex items-center justify-center bg-slate-50"
+                                  >
+                                    {item.kind === "image" ? (
+                                      <img src={item.url} alt="" className="w-full h-full object-cover" />
+                                    ) : item.kind === "video" ? (
+                                      <div className="relative w-full h-full">
+                                        <video src={item.url} className="w-full h-full object-cover" muted playsInline />
+                                        <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                                          <div className="w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                                            <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-white border-b-[5px] border-b-transparent ml-1" />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ) : item.kind === "instagram" ? (
+                                      <div className="w-full h-full bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 flex items-center justify-center text-white">
+                                        <div className="flex flex-col items-center gap-1 text-center px-2">
+                                          <Instagram size={18} />
+                                          <span className="text-[10px] font-semibold leading-tight">Instagram</span>
+                                        </div>
+                                      </div>
+                                    ) : item.kind === "youtube" ? (
+                                      <div className="w-full h-full bg-gradient-to-br from-red-600 to-red-500 flex items-center justify-center text-white">
+                                        <div className="flex flex-col items-center gap-1 text-center px-2">
+                                          <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                                            <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1" />
+                                          </div>
+                                          <span className="text-[10px] font-semibold leading-tight">YouTube</span>
+                                        </div>
+                                      </div>
+                                    ) : item.kind === "pdf" ? (
+                                      <div className="flex flex-col items-center gap-1 text-slate-500 p-2 text-center">
+                                        <FileText size={22} className="text-red-500" />
+                                        <span className="text-[10px] leading-tight line-clamp-2">PDF</span>
+                                      </div>
+                                    ) : (
+                                      <div className="flex flex-col items-center gap-1 text-slate-600 p-2 text-center">
+                                        <ExternalLink size={18} className="text-slate-500" />
+                                        <span className="text-[10px] leading-tight line-clamp-2">Link</span>
+                                      </div>
+                                    )}
+                                  </motion.div>
+                                );
+                              })}
+                            </div>
+                          );
+                        })()}
                       </div>
                     </div>
                   </div>
                 ))}
-              </div>
-              <div className="mt-6 text-center">
-                <button 
-                  onClick={() => setLeadershipModalOpen(true)}
-                  className="inline-flex items-center font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                >
-                  View All Activities <ChevronRight size={16} />
-                </button>
               </div>
             </motion.section>
 
