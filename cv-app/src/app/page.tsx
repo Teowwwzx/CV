@@ -1,11 +1,27 @@
 "use client";
 
 import { cvData } from "@/data/cv-data";
-import { Mail, Phone, Globe, MapPin, ExternalLink, Award, Briefcase, Code, Image as ImageIcon, FileText, Github, MessageCircle, Layers, Monitor, Instagram } from "lucide-react";
-import { motion } from "framer-motion";
+import Image from "next/image";
+import {
+  Github,
+  Mail,
+  Phone,
+  MapPin,
+  ExternalLink,
+  Code,
+  Layers,
+  Award,
+  Briefcase,
+  Monitor,
+  FileText,
+  Instagram,
+  Image as ImageIcon,
+  MessageCircle
+} from "lucide-react";
+import { motion, useInView } from "framer-motion";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ImageGalleryModal from "@/components/ImageGalleryModal";
 import WebPreviewModal from "@/components/WebPreviewModal";
 
@@ -81,6 +97,11 @@ export default function Home() {
   const [webPreviewTitle, setWebPreviewTitle] = useState("");
   const [webPreviewInstance, setWebPreviewInstance] = useState(0);
 
+  const expertiseRef = useRef<HTMLElement | null>(null);
+  const goalsRef = useRef<HTMLElement | null>(null);
+  const expertiseInView = useInView(expertiseRef, { once: true, amount: 0.2 });
+  const goalsInView = useInView(goalsRef, { once: true, amount: 0.2 });
+
   const projects = cvData.projects as unknown as Project[];
   const expertiseEntries = Object.entries(cvData.expertise) as [string, Skill[]][];
   const leadershipEntries = cvData.leadership as unknown as LeadershipActivity[];
@@ -95,7 +116,9 @@ export default function Home() {
     setWebPreviewUrl(url);
     setWebPreviewTitle(title);
     setWebPreviewOpen(true);
-    setWebPreviewInstance((prev) => prev + 1);
+    if (url !== webPreviewUrl) {
+      setWebPreviewInstance((prev) => prev + 1);
+    }
   };
 
   const openGallery = (images: string[], index: number = 0, title: string = "") => {
@@ -277,10 +300,12 @@ export default function Home() {
                                   </div>
                                 </div>
                             ) : (
-                                <img 
-                                    src={img} 
-                                    alt={`${exp.company} work ${idx + 1}`} 
-                                    className="w-full h-full object-cover"
+                                <Image
+                                  src={img}
+                                  alt={`${exp.company} work ${idx + 1}`}
+                                  fill
+                                  sizes="96px"
+                                  className="object-cover"
                                 />
                             )}
                           </motion.div>
@@ -335,10 +360,12 @@ export default function Home() {
                           onClick={() => openProjectPreview(project.previewUrl, project.title)}
                         >
                           {project.image ? (
-                            <img 
-                              src={project.image} 
-                              alt={project.title} 
-                              className="w-full h-full object-cover aspect-[16/10] object-top transition-transform duration-700 group-hover:scale-110"
+                            <Image
+                              src={project.image}
+                              alt={project.title}
+                              fill
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              className="object-cover object-top transition-transform duration-700 group-hover:scale-110 transform-gpu"
                             />
                           ) : (
                             <div className="flex items-center justify-center h-full text-slate-400">
@@ -346,10 +373,10 @@ export default function Home() {
                             </div>
                           )}
                           <div className={cn(
-                            "absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100",
+                            "absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none",
                             isBadProject && "hidden"
                           )}>
-                            <span className="bg-white/90 text-slate-900 px-4 py-2 rounded-full font-medium text-sm shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                            <span className="bg-white/90 text-slate-900 px-4 py-2 rounded-full font-medium text-sm shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform transform-gpu">
                               View Live Demo
                             </span>
                           </div>
@@ -504,7 +531,7 @@ export default function Home() {
                                     className="cursor-pointer rounded-lg overflow-hidden border border-slate-200 shadow-sm w-24 h-24 relative flex items-center justify-center bg-slate-50"
                                   >
                                     {item.kind === "image" ? (
-                                      <img src={item.url} alt="" className="w-full h-full object-cover" />
+                                      <Image src={item.url} alt="" fill sizes="96px" className="object-cover" />
                                     ) : item.kind === "video" ? (
                                       <div className="relative w-full h-full">
                                         <video src={item.url} className="w-full h-full object-cover" muted playsInline />
@@ -517,7 +544,7 @@ export default function Home() {
                                     ) : item.kind === "instagram" ? (
                                       instagramThumbUrl ? (
                                         <div className="relative w-full h-full">
-                                          <img src={instagramThumbUrl} alt="" className="w-full h-full object-cover" />
+                                          <Image src={instagramThumbUrl} alt="" fill sizes="96px" className="object-cover" />
                                           <div className="absolute inset-0 bg-black/10" />
                                           <div className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-white/25 backdrop-blur-sm flex items-center justify-center text-white">
                                             <Instagram size={18} />
@@ -568,7 +595,7 @@ export default function Home() {
 
 
             {/* Expertise */}
-            <motion.section variants={item} className="bg-slate-900 text-white rounded-3xl p-8 shadow-lg relative overflow-hidden">
+            <motion.section ref={expertiseRef} variants={item} className="bg-slate-900 text-white rounded-3xl p-8 shadow-lg relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 opacity-10">
                 <Code size={100} />
               </div>
@@ -606,10 +633,11 @@ export default function Home() {
                           <div className="flex items-center gap-2 mt-1">
                             <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
                               <motion.div
-                                initial={{ width: 0 }}
-                                whileInView={{ width: `${(skill.rating / 5) * 100}%` }}
+                                initial={{ scaleX: 0 }}
+                                animate={{ scaleX: expertiseInView ? skill.rating / 5 : 0 }}
                                 transition={{ duration: 1, ease: "easeOut" }}
-                                className="h-full bg-blue-500 rounded-full"
+                                className="h-full bg-blue-500 rounded-full origin-left"
+                                style={{ width: "100%" }}
                               />
                             </div>
                             <span className="text-[10px] font-mono text-slate-400 min-w-[24px] text-right">{skill.rating}/5</span>
@@ -624,7 +652,7 @@ export default function Home() {
 
             {/* A Goals Section - Compleness the knowledge of Web 2 Development including Mobile: Flutter, Ios, etc / Web 3: Dapp on public chain, Scripts of Market Marker */}
             {goals && goals.length > 0 && (
-              <motion.section variants={item} className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+              <motion.section ref={goalsRef} variants={item} className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
                 <h2 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                   <Layers className="text-yellow-600" size={20} /> Goals
                 </h2>
@@ -642,10 +670,11 @@ export default function Home() {
                         <div className="flex items-center gap-3">
                           <div className="flex-1 h-2 bg-amber-100 rounded-full overflow-hidden">
                             <motion.div
-                              initial={{ width: 0 }}
-                              whileInView={{ width: `${goal.progress}%` }}
+                              initial={{ scaleX: 0 }}
+                              animate={{ scaleX: goalsInView ? goal.progress / 100 : 0 }}
                               transition={{ duration: 1, ease: "easeOut" }}
-                              className="h-full bg-amber-500 rounded-full"
+                              className="h-full bg-amber-500 rounded-full origin-left"
+                              style={{ width: "100%" }}
                             />
                           </div>
                           <span className="text-xs font-semibold text-amber-700 min-w-[42px] text-right">

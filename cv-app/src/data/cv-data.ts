@@ -1,5 +1,3 @@
-import { image } from "framer-motion/client";
-
 export const cvData = {
   personalInfo: {
     name: "Teow Zhen Xiang",
