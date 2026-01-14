@@ -102,7 +102,7 @@ export const cvData = {
     {
       title: "FYP - Event Management Platform (I Love AI)",
       year: "2026",
-      description: "Fully Handmade Database Schema",
+      description: "Almost a production-ready project with Admin Dashboard. Fully handmade database schema.",
       tech: [
         "Next.js",
         "FastAPI",

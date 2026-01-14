@@ -169,13 +169,13 @@ export default function Home() {
               >
                 <MessageCircle size={16} /> WhatsApp Me
               </a>
-              <a
+              {/* <a
                 href={`https://${cvData.personalInfo.website}`}
                 target="_blank"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-white text-slate-900 border border-slate-200 rounded-full hover:bg-slate-50 transition-colors shadow-sm"
               >
                 <Globe size={16} /> Portfolio
-              </a>
+              </a> */}
               <a
                 href={cvData.personalInfo.github}
                 target="_blank"
