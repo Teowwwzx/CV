@@ -192,13 +192,14 @@ export default function Home() {
               >
                 <MessageCircle size={16} /> WhatsApp Me
               </a>
-              {/* <a
-                href={`https://${cvData.personalInfo.website}`}
+              { <a
+                href={`https://www.16personalities.com/ch/intj-人格`}
                 target="_blank"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-white text-slate-900 border border-slate-200 rounded-full hover:bg-slate-50 transition-colors shadow-sm"
               >
-                <Globe size={16} /> Portfolio
-              </a> */}
+              Personality (INTJ-A)
+              </a>
+              }
               <a
                 href={cvData.personalInfo.github}
                 target="_blank"
