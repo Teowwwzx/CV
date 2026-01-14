@@ -51,6 +51,17 @@ type Skill = {
   max?: number;
 };
 
+type LeadershipActivity = {
+  name: string;
+  year: string;
+  role?: string;
+  description?: string;
+  image?: string;
+  video?: string;
+  link?: string;
+  tags?: string[];
+};
+
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImages, setCurrentImages] = useState<string[]>([]);
@@ -67,6 +78,7 @@ export default function Home() {
 
   const projects = cvData.projects as unknown as Project[];
   const expertiseEntries = Object.entries(cvData.expertise) as [string, Skill[]][];
+  const leadershipEntries = cvData.leadership as unknown as LeadershipActivity[];
 
   const whatsappPhoneDigits = cvData.personalInfo.phone.replace(/\D/g, "");
   const whatsappUrl = `https://wa.me/${whatsappPhoneDigits}?text=${encodeURIComponent(
@@ -300,26 +312,40 @@ export default function Home() {
                 </h2>
 
                 <div className="grid grid-cols-1 gap-8">
-                  {projects.map((project, index) => (
-                    <div key={index} className="group relative bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 hover:shadow-lg hover:border-blue-200 transition-all duration-300">
-                      <div className="flex flex-col md:flex-row h-full">
+                  {projects.map((project, index) => {
+                    const isBadProject = project.title.toLowerCase().includes("bad project");
+                    return (
+                    <div
+                      key={index}
+                      className={cn(
+                        "group relative bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 hover:shadow-lg hover:border-blue-200 transition-all duration-300",
+                        isBadProject && "hover:shadow-sm"
+                      )}
+                    >
+                      <div className={cn("flex flex-col md:flex-row h-full", isBadProject && "md:items-center")}>
                         {/* Project Image / Thumbnail */}
                         <div 
-                          className="w-full md:w-2/5 h-48 md:h-auto bg-slate-200 relative cursor-pointer overflow-hidden"
+                          className={cn(
+                            "w-full md:w-2/5 h-48 md:h-auto bg-slate-200 relative cursor-pointer overflow-hidden",
+                            isBadProject && "md:w-1/3 h-32 md:h-28"
+                          )}
                           onClick={() => openProjectPreview(project.previewUrl, project.title)}
                         >
                           {project.image ? (
                             <img 
                               src={project.image} 
                               alt={project.title} 
-                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                              className="w-full h-full object-cover aspect-[16/10] object-top transition-transform duration-700 group-hover:scale-110"
                             />
                           ) : (
                             <div className="flex items-center justify-center h-full text-slate-400">
                               <Monitor size={48} />
                             </div>
                           )}
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                          <div className={cn(
+                            "absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100",
+                            isBadProject && "hidden"
+                          )}>
                             <span className="bg-white/90 text-slate-900 px-4 py-2 rounded-full font-medium text-sm shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform">
                               View Live Demo
                             </span>
@@ -327,19 +353,27 @@ export default function Home() {
                         </div>
 
                         {/* Project Details */}
-                        <div className="flex-1 p-6 flex flex-col justify-between">
+                        <div className={cn("flex-1 p-6 flex flex-col justify-between", isBadProject && "p-4")}>
                           <div>
                             <div className="flex justify-between items-start mb-2">
-                              <h3 className="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                              <h3 className={cn(
+                                "font-bold text-slate-800 group-hover:text-blue-600 transition-colors",
+                                isBadProject ? "text-lg" : "text-xl"
+                              )}>
                                 {project.title}
                               </h3>
-                              <span className="text-sm font-medium text-slate-500 bg-white px-2 py-1 rounded-md border border-slate-100">
+                              <span className={cn(
+                                "text-sm font-medium bg-blue-400 text-white px-2 py-1 rounded-md border border-slate-100 shrink-0",
+                                isBadProject && "text-xs"
+                              )}>
                                 {project.year}
                               </span>
                             </div>
-                            <p className="text-slate-600 mb-4 leading-relaxed">
-                              {project.description}
-                            </p>
+                            {!isBadProject && project.description && (
+                              <p className="text-slate-600 mb-4 leading-relaxed">
+                                {project.description}
+                              </p>
+                            )}
                             {project.credentials && (
                               <div className="text-xs text-slate-600 bg-white border border-slate-200 rounded-lg p-3 mb-4">
                                 <div className="font-semibold text-slate-800 mb-1">Demo Credentials</div>
@@ -352,15 +386,20 @@ export default function Home() {
                           
                           <div className="flex flex-wrap gap-2 mt-auto">
                             {project.tech.map((tech, idx) => (
-                              <span key={idx} className="text-xs font-medium text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">
+                              <span key={idx} className="text-xs font-medium text-orange-600 bg-orange-50 px-2.5 py-1 rounded-full">
                                 {tech}
                               </span>
                             ))}
+                            {isBadProject && (
+                              <span className="text-xs font-medium text-slate-600 bg-slate-200 px-2.5 py-1 rounded-full">
+                                Bad Project
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
                     </div>
-                  ))}
+                  )})}
                 </div>
               </motion.section>
             )}
@@ -370,12 +409,60 @@ export default function Home() {
               <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                 <Award className="text-blue-600" size={24} /> Leadership & Activities
               </h2>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {cvData.leadership.slice(0, 4).map((activity, idx) => (
-                  <div key={idx} className="p-4 rounded-xl bg-slate-50 hover:bg-blue-50 transition-colors border border-slate-100">
-                    <div className="font-semibold text-slate-800">{activity.name}</div>
-                    <div className="text-sm text-slate-500 mt-1">{activity.year}</div>
-                    {activity.role && <div className="text-xs font-medium text-blue-600 mt-2 uppercase tracking-wide">{activity.role}</div>}
+              <div className="grid grid-cols-1 gap-4">
+                {leadershipEntries.slice(0, 4).map((activity, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 rounded-2xl bg-slate-50 hover:bg-blue-50 transition-colors border border-slate-100"
+                  >
+                    <div className="flex items-start gap-5">
+                      <div className="w-20 h-20 rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm shrink-0 flex items-center justify-center">
+                        {activity.image ? (
+                          <img src={activity.image} alt="" className="w-full h-full object-cover" />
+                        ) : activity.video ? (
+                          <div className="w-full h-full bg-slate-900 flex items-center justify-center text-white text-xs font-semibold">
+                            Video Clip
+                          </div>
+                        ) : (
+                          <Award size={20} className="text-blue-600" />
+                        )}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                          <div className="min-w-0">
+                            <div className="font-bold text-slate-900 text-lg leading-snug">{activity.name}</div>
+                            <div className="text-sm text-slate-500 mt-1">{activity.year}</div>
+                          </div>
+                          {activity.role ? (
+                            <div className="text-xs font-semibold text-blue-600 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-full shrink-0">
+                              {activity.role}
+                            </div>
+                          ) : null}
+                        </div>
+                        {activity.tags?.length ? (
+                          <div className="flex flex-wrap gap-2 mt-3">
+                            {activity.tags.map((tag) => (
+                              <span key={tag} className="text-[10px] font-semibold text-slate-700 bg-white border border-slate-200 px-2 py-0.5 rounded-full">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        ) : null}
+                        {activity.description ? (
+                          <p className="text-sm text-slate-600 mt-3 leading-relaxed line-clamp-3">
+                            {activity.description}
+                          </p>
+                        ) : null}
+                        <div className="mt-4">
+                          <button
+                            onClick={() => setLeadershipModalOpen(true)}
+                            className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+                          >
+                            View details →
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>

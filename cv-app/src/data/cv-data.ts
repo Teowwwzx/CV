@@ -36,21 +36,19 @@ export const cvData = {
       { name: "Database Schema", rating: 4.5 },
     ],
     "Full Stack": [
-      { name: "Python: Flask, FastAPI", rating: 3.5 },
-      { name: "PHP: Laravel", rating: 3.5 },
+      { name: "Flask, FastAPI (Python)", rating: 3.5 },
+      { name: "Laravel (PHP)", rating: 3.5 },
+      { name: "Bootstrap & Tailwind", rating: 3.5 },
       { name: "Next.js", rating: 3.5 },
       { name: "Solidity", rating: 3 },
-      { name: "Tailwind CSS", rating: 3 },
-      { name: "Bootstrap", rating: 3.5 },
     ],
     DevOps: [
       { name: "AWS, Digital Ocean", rating: 3.5 },
       { name: "Docker, Linux, WSL", rating: 4 },
     ],
     "AI Tools": [
-      { name: "Windsurf, Cursor, ClaudeCode", rating: 4.5 },
-      { name: "Trae, Antigravity", rating: 4 },
-      { name: "Google AI Ecosystem, N8N", rating: 3.5 },
+      { name: "Trae, Antigravity, Cur.., Claude.., Wind..", rating: 4.5 },
+      { name: "Google AI Ecosystem, N8N", rating: 4 },
     ],
     Others: [
       {
@@ -58,14 +56,9 @@ export const cvData = {
         rating: 4,
         link: "https://www.figma.com/design/oQZNG9cjgZtgqkTLyzC6vE/POS-LAMBAT-POS-System?node-id=0-1&t=UTdmv2k9At7kPKtJ-1",
       },
-      { name: "DaVinci Resolve", rating: 4 },
-      { name: "Microsoft Office", rating: 4.5 },
+      { name: "Microsoft Office", rating: 4 },
     ],
   },
-  languages: [
-    { name: "English & Malay", rating: 3.5, max: 5 },
-    { name: "Mandarin", rating: 4.5, max: 5 },
-  ],
   experience: [
     {
       id: "alitec-2025",
@@ -105,7 +98,7 @@ export const cvData = {
   ],
   projects: [
     {
-      title: "FYP - 'Event Management Platform' (I Love AI)",
+      title: "FYP - Event Management Platform (I Love AI)",
       year: "2026",
       description: "Fully Handmade Database Schema",
       tech: [
@@ -118,7 +111,7 @@ export const cvData = {
         "Place API",
       ],
       previewUrl: "https://thedzx.site",
-      image: "/Fintech/OVERWATCH/img/trading-indices.png",
+      image: "/atas-fyp.png",
       link: "https://thedzx.site",
       credentials: {
         email: "student@gmail.com or expert@gmail.com or admin@gmail.com",
@@ -131,16 +124,16 @@ export const cvData = {
       description: "Fully Handmade with pure HTML & CSS",
       tech: ["HTML5", "CSS3"],
       previewUrl: "/Fintech/OVERWATCH/index.html",
-      image: "/Fintech/OVERWATCH/img/trading-indices.png",
+      image: "/fintech.png",
       link: "https://github.com/teowzx1/Fintech-Landing-Page",
     },
     {
-      title: "Simple Membership System (Real Project b4)",
+      title: "Simple Membership System",
       year: "202x",
-      description: "",
+      description: "Production Project Before",
       tech: ["Flask"],
       previewUrl: "https://affiliateloginsystem-production.up.railway.app/admin/dashboard",
-      image: "/Fintech/OVERWATCH/img/trading-indices.png",
+      image: "/affiliate.png",
       link: "https://affiliateloginsystem-production.up.railway.app/admin/dashboard",
       credentials: {
         email: " admin@gmail.com or usertest@gmail.com",
@@ -148,9 +141,9 @@ export const cvData = {
       },
     },
     {
-      title: "Payroll Management System (CLI Only)",
+      title: "Payroll Management System",
       year: "2026",
-      description: "",
+      description: "CLI Only, No GUI",
       tech: ["Java"],
       previewUrl: "https://github.com/Teowwwzx/DCOMToSchool.git",
       image: "/Fintech/OVERWATCH/img/trading-indices.png",
@@ -181,24 +174,27 @@ export const cvData = {
     {
       name: "AI x Blockchain Panel Discussion",
       year: "2025",
+      tags: ["leadership", "event", "marketing"],
       description:
         "Handle >70% Tasks haizzz, Find Speaker, Collaborate with Clubs, Marketing (Find Business People), Draf All Paperwork like Email Confirmation & Appreciation & Speech, Event Flow, Event Topic, Find Sponsor",
       image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://www.instagram.com/reel/DNDH1mFzKV9/",
     },
-    { name: "MAFC", year: "2023" },
+    { name: "MAFC", year: "2023", tags: ["leadership", "community"] },
     {
       name: "APU Championship",
       year: "2022",
+      tags: ["leadership", "creative", "event"],
       description:
         "Handle >70% Tasks from Design -> Marketing -> Integrate Pick & Ban System -> Find Commentator -> ",
       video: "/obs-stream.mp4",
     },
-    { name: "JB Drums Holiday Camp", year: "2022" },
+    { name: "JB Drums Holiday Camp", year: "2022", tags: ["creative", "teamwork"] },
     {
       name: "Malaysia 24 Festive Drums National Championship",
       year: "2019 & 2024",
       role: "Lead School Team",
+      tags: ["leadership", "creative"],
     },
   ],
 };

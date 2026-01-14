@@ -16,9 +16,11 @@ type LeadershipActivity = {
   year: string;
   role?: string;
   description?: string;
+  image?: string;
   images?: string[];
   video?: string;
   link?: string;
+  tags?: string[];
 };
 
 export default function LeadershipModal({
@@ -91,8 +93,16 @@ export default function LeadershipModal({
                   key={index}
                   className="bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-100 flex flex-col md:flex-row gap-6 items-start md:items-center transition-all hover:border-blue-200 hover:shadow-sm"
                 >
-                  <div className="w-12 h-12 bg-white text-blue-600 rounded-xl flex items-center justify-center shrink-0 border border-slate-100 shadow-sm">
-                     <span className="font-bold text-lg">{activity.year.split(' ')[0]}</span>
+                  <div className="w-16 h-16 bg-white rounded-xl overflow-hidden flex items-center justify-center shrink-0 border border-slate-100 shadow-sm">
+                    {activity.image ? (
+                      <img src={activity.image} alt="" className="w-full h-full object-cover" />
+                    ) : activity.video ? (
+                      <div className="w-full h-full bg-slate-900 flex items-center justify-center text-white">
+                        <Video size={22} />
+                      </div>
+                    ) : (
+                      <Award size={22} className="text-blue-600" />
+                    )}
                   </div>
                   
                   <div className="flex-1">
@@ -105,14 +115,26 @@ export default function LeadershipModal({
                           </span>
                        )}
                     </div>
+                    {activity.tags?.length ? (
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {activity.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[10px] font-semibold text-slate-700 bg-white border border-slate-200 px-2 py-0.5 rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null}
                     <p className="text-slate-600 mb-4">
                       Active participant and contributor, demonstrating teamwork and organizational skills.
                     </p>
 
                      <div className="flex flex-wrap items-center gap-3">
-                       {activity.images?.length ? (
+                       {activity.images?.length || activity.image ? (
                           <button 
-                            onClick={() => openGallery(activity.images!, 0, activity.name)}
+                            onClick={() => openGallery(activity.images?.length ? activity.images : [activity.image!], 0, activity.name)}
                             className="flex items-center gap-1.5 text-xs font-medium text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full hover:bg-blue-100 transition-colors"
                           >
                              <ImageIcon size={14} /> Photos
