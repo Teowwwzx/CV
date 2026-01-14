@@ -15,8 +15,8 @@ function AccessForm() {
     e.preventDefault();
     setError("");
 
-    if (company.trim().toLowerCase() !== "bybit") {
-      setError('Access denied. Please enter "bybit".');
+    if (company.trim().toLowerCase() !== "bybit" && company.trim().toLowerCase() !== "dcconnect" && company.trim().toLowerCase() !== "tapway" && company.trim().toLowerCase() !== "horse year") {
+      setError('Access denied. Please enter your company name.');
       return;
     }
 
@@ -41,7 +41,7 @@ function AccessForm() {
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               className="w-full rounded-xl bg-white/10 border border-white/10 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="e.g. bybit"
+              placeholder="e.g. binance"
               autoFocus
             />
           </div>

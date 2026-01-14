@@ -220,7 +220,7 @@ export const cvData = {
     },
     {
       name: "Web 3, Financial, Investment Technical Knowledge",
-      description: "Completeness the knowledge of Web 3: Dapp on public chain, Scripts of Market Maker.",
+      description: "Completeness the knowledge of Web 3: Dapp on public chain, Quantitative & Scripts of Market.",
       progress: 15,
     },
   ],
