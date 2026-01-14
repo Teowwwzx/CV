@@ -214,13 +214,18 @@ export const cvData = {
   ],
   goals: [
     {
-      name: "Web 2 and Mobile Development Knowledge",
-      description: "Completeness the knowledge of Web 2 Development and Mobile: Flutter & iOS",
-      progress: 45,
+      name: "Web 2 , AI Development Knowledge",
+      description: "Advance Web 2 Development and AI: Fine Tuning",
+      progress: 55,
     },
     {
-      name: "Web 3, Financial, Investment Technical Knowledge",
-      description: "Completeness the knowledge of Web 3: Dapp on public chain, Quantitative & Scripts of Market.",
+      name: "Web 3, Financial, Investment Knowledge",
+      description: "Dapp on Public Chain, Quantitative & Scripts of Market",
+      progress: 20,
+    },
+    {
+      name: "Mobile Development Knowledge",
+      description: "Flutter & Swift",
       progress: 15,
     },
   ],
