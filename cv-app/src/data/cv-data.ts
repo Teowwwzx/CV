@@ -153,18 +153,18 @@ export const cvData = {
     },
     
     {
-      title: "Decentralized Supply Chain Marketplaces (Bad Project)",
+      title: "Decentralized Supply Chain Marketplaces",
       year: "2026",
-      description: "",
+      description: "Bad Project",
       tech: ["Next.js", "Solidity"],
       previewUrl: "/Fintech/OVERWATCH/index.html",
       image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://github.com/teowzx1/Decentralized-Supply-Chain-Marketplaces",
     },
     {
-      title: "Learning Platform (Bad Project)",
+      title: "Learning Platform",
       year: "2025",
-      description: "",
+      description: "Bad Project",
       tech: ["ASP.NET", "Bootstrap"],
       previewUrl: "/Fintech/OVERWATCH/index.html",
       image: "/Fintech/OVERWATCH/img/trading-indices.png",
@@ -193,11 +193,10 @@ export const cvData = {
       video: "/obs-stream.mp4",
       link: "https://www.instagram.com/tv/CdC42Rqlz1A/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     },
-    {
+    { 
       name: "Malaysia 24 Festive Drums National Championship",
       year: "2019 & 2024",
-      description:
-        "Gather and Lead School Team from an impossible situation to successfully join and get silver medal due to Sekolah Kebangsaan is lack of resouces (people, money, no support from school) to compete with Chinese Independent High School. It is always a miracle for us",
+      description: "No money, no support, and no path to victory—but we had heart. I led our small team from a Sekolah Kebangsaan to fight against the Chinese Independent High School and win a Silver Medal. Competing against the best schools with nothing but our passion was a struggle, but winning was a miracle we created together.",
       tags: ["leadership", "creative"],
       image: "/24-festive-drum-2022.jpg",
       link: "https://youtu.be/VyPBwZTXmTs?si=LpWeSt0XQtLRK4-d&t=63",
@@ -212,5 +211,17 @@ export const cvData = {
         "Plan Activities",
       tags: ["creative", "teamwork"] 
     }
+  ],
+  goals: [
+    {
+      name: "Web 2 Development (Mobile: Flutter, iOS, etc.)",
+      description: "Completeness the knowledge of Web 2 Development including Mobile: Flutter, iOS, etc.",
+      progress: 45,
+    },
+    {
+      name: "Web 3 Development (Dapp on public chain, Technical Knowledge of Invest)",
+      description: "Completeness the knowledge of Web 3: Dapp on public chain, Scripts of Market Maker.",
+      progress: 15,
+    },
   ],
 };

@@ -63,6 +63,12 @@ type LeadershipActivity = {
   tags?: string[];
 };
 
+type Goal = {
+  name: string;
+  description: string;
+  progress: number;
+};
+
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImages, setCurrentImages] = useState<string[]>([]);
@@ -78,6 +84,7 @@ export default function Home() {
   const projects = cvData.projects as unknown as Project[];
   const expertiseEntries = Object.entries(cvData.expertise) as [string, Skill[]][];
   const leadershipEntries = cvData.leadership as unknown as LeadershipActivity[];
+  const goals = cvData.goals as unknown as Goal[];
 
   const whatsappPhoneDigits = cvData.personalInfo.phone.replace(/\D/g, "");
   const whatsappUrl = `https://wa.me/${whatsappPhoneDigits}?text=${encodeURIComponent(
@@ -113,11 +120,11 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50 bg-dot-pattern text-slate-800 font-sans selection:bg-blue-100 selection:text-blue-900">
       <div className="bg-yellow-100 border-b border-yellow-200 text-yellow-800 px-4 py-3 text-center sticky top-0 z-50 shadow-sm">
         <p className="text-sm md:text-base font-medium flex items-center justify-center gap-2">
-           🚧 <span className="font-bold">Work in Progress:</span> This CV is currently being updated (Created in 15min).
+           🚧 <span className="font-bold">In Progress:</span>This CV was built in just 30 minutes.
         </p>
       </div>
       <ImageGalleryModal
-        key={galleryInstance}
+        key={`gallery-${galleryInstance}`}
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         images={currentImages}
@@ -125,7 +132,7 @@ export default function Home() {
         title={modalTitle}
       />
       <WebPreviewModal
-        key={webPreviewInstance}
+        key={`web-${webPreviewInstance}`}
         isOpen={webPreviewOpen}
         onClose={() => setWebPreviewOpen(false)}
         url={webPreviewUrl}
@@ -474,6 +481,8 @@ export default function Home() {
                             .filter((item) => item.kind === "image" || item.kind === "video")
                             .map((item) => item.url);
 
+                          const instagramThumbUrl = items.find((item) => item.kind === "image")?.url;
+
                           return (
                             <div className="flex flex-wrap gap-3 mt-4">
                               {items.slice(0, 4).map((item, itemIndex) => {
@@ -506,12 +515,19 @@ export default function Home() {
                                         </div>
                                       </div>
                                     ) : item.kind === "instagram" ? (
-                                      <div className="w-full h-full bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 flex items-center justify-center text-white">
-                                        <div className="flex flex-col items-center gap-1 text-center px-2">
-                                          <Instagram size={18} />
-                                          <span className="text-[10px] font-semibold leading-tight">Instagram</span>
+                                      instagramThumbUrl ? (
+                                        <div className="relative w-full h-full">
+                                          <img src={instagramThumbUrl} alt="" className="w-full h-full object-cover" />
+                                          <div className="absolute inset-0 bg-black/10" />
+                                          <div className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-white/25 backdrop-blur-sm flex items-center justify-center text-white">
+                                            <Instagram size={18} />
+                                          </div>
                                         </div>
-                                      </div>
+                                      ) : (
+                                        <div className="w-full h-full bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 flex items-center justify-center text-white">
+                                          <Instagram size={20} />
+                                        </div>
+                                      )
                                     ) : item.kind === "youtube" ? (
                                       <div className="w-full h-full bg-gradient-to-br from-red-600 to-red-500 flex items-center justify-center text-white">
                                         <div className="flex flex-col items-center gap-1 text-center px-2">
@@ -605,7 +621,45 @@ export default function Home() {
                 ))}
               </div>
             </motion.section>
-            
+
+            {/* A Goals Section - Compleness the knowledge of Web 2 Development including Mobile: Flutter, Ios, etc / Web 3: Dapp on public chain, Scripts of Market Marker */}
+            {goals && goals.length > 0 && (
+              <motion.section variants={item} className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+                <h2 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                  <Layers className="text-yellow-600" size={20} /> Goals
+                </h2>
+                <div className="grid grid-cols-1 gap-4">
+                  {goals.map((goal, idx) => (
+                    <div
+                      key={`${goal.name}-${idx}`}
+                      className="rounded-2xl border border-amber-200 shadow-sm overflow-hidden"
+                    >
+                      <div className="bg-gradient-to-r from-amber-50 via-amber-100 to-amber-200 p-6">
+                        <h3 className="text-lg font-bold text-amber-900 mb-1">{goal.name}</h3>
+                        <p className="text-amber-800 text-sm">{goal.description}</p>
+                      </div>
+                      <div className="p-6 bg-white">
+                        <div className="flex items-center gap-3">
+                          <div className="flex-1 h-2 bg-amber-100 rounded-full overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${goal.progress}%` }}
+                              transition={{ duration: 1, ease: "easeOut" }}
+                              className="h-full bg-amber-500 rounded-full"
+                            />
+                          </div>
+                          <span className="text-xs font-semibold text-amber-700 min-w-[42px] text-right">
+                            {goal.progress}%
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.section>
+            )}
+
+
 
           </div>
         </motion.div>
