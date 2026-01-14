@@ -15,8 +15,19 @@ function AccessForm() {
     e.preventDefault();
     setError("");
 
-    const input = company.trim().toLowerCase();
-    const allowedCompanies = ["bybit", "dcconnect", "dcconnectglobal", "tapway", "horse year"];
+    // .trim() removes outer spaces
+    // .toLowerCase() makes it case-insensitive
+    // .replace(/\s+/g, ' ') collapses multiple internal spaces into one
+    const input = company.trim().toLowerCase().replace(/\s+/g, ' ');
+    
+    const allowedCompanies = [
+      "bybit", 
+      "dcconnect", 
+      "dcconnectglobal", 
+      "dcconnect global", // Added with space for flexibility
+      "tapway", 
+      "horse year"
+    ];
 
     if (!allowedCompanies.includes(input)) {
       setError('Access denied. Please enter your company name.');
@@ -44,7 +55,7 @@ function AccessForm() {
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               className="w-full rounded-xl bg-white/10 border border-white/10 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="e.g. dcconnect"
+              placeholder="e.g. apu"
               autoFocus
             />
           </div>
