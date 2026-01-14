@@ -55,6 +55,13 @@ function AccessForm() {
             Continue
           </button>
         </form>
+
+        <div className="mt-8 pt-6 border-t border-white/10">
+          <p className="text-[10px] text-white/40 text-center leading-relaxed">
+            Note: This is strictly for security and access gating purposes. <br />
+            We do not record, store, or share your data.
+          </p>
+        </div>
       </div>
     </div>
   );
