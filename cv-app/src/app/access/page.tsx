@@ -26,6 +26,10 @@ function AccessForm() {
       "dcconnectglobal", 
       "dcconnect global", // Added with space for flexibility
       "tapway", 
+      "google", 
+      "jpmorgan", 
+      "jp morgan", 
+      "jpm", 
       "horse year"
     ];
 
@@ -34,7 +38,7 @@ function AccessForm() {
       return;
     }
 
-    const baseCookie = "company_access=bybit; path=/; max-age=2592000; samesite=lax";
+    const baseCookie = `company_access=${input}; path=/; max-age=2592000; samesite=lax`;
     const cookie = window.location.protocol === "https:" ? `${baseCookie}; secure` : baseCookie;
     document.cookie = cookie;
     router.replace(nextPath);

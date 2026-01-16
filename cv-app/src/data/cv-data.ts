@@ -213,7 +213,7 @@ export const cvData = {
   goals: [
     {
       name: "Web 2 , AI Development Knowledge",
-      description: "Advance Web 2 Development and AI: Fine Tuning",
+      description: "Advance Web 2 Development: Redis, Celery, Neo4j and AI: Fine Tuning",
       progress: 55,
     },
     {

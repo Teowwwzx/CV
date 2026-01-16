@@ -13,7 +13,9 @@ export function middleware(request: NextRequest) {
   }
 
   const companyAccess = request.cookies.get("company_access")?.value ?? "";
-  if (companyAccess.toLowerCase() === "bybit") {
+  const allowedCompanies = ["bybit", "dcconnect", "dcconnectglobal", "dcconnect global", "tapway", "google", "jpmorgan", "jp morgan", "jpm", "horse year"];
+  
+  if (allowedCompanies.includes(companyAccess.toLowerCase())) {
     return NextResponse.next();
   }
 
