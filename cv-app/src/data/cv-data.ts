@@ -2,7 +2,7 @@ export const cvData = {
   personalInfo: {
     name: "Teow Zhen Xiang",
     role: "IT (Fintech) Student | Aspiring DevOps & Full Stack Developer",
-    bio: "Welcome to my CV! I'm a self-motivated person that like to explore different knowledge and really excited to solve provlem with a team.",
+    bio: "Welcome to my CV! I like to explore different knowledge in terms of IT or Financial, and also really excited to show the project that I have done below!",
     phone: "+601110662491",
     website: "cv.thedzx.site",
     github: "https://github.com/Teowwwzx",
