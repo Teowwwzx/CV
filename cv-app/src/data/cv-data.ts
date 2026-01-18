@@ -33,20 +33,19 @@ export const cvData = {
         link: "https://developer.mozilla.org/en-US/docs/Learn/HTML",
       },
       { name: "Database Schema", rating: 4 },
-      { name: "Git", rating: 3.5 },
       { name: "JavaScript", rating: 3.0 },
     ],
     "Full Stack": [
+      { name: "Bootstrap & Tailwind & SCSS", rating: 4 },
       { name: "Flask, FastAPI (Python)", rating: 3.5 },
       { name: "Laravel (PHP)", rating: 3.5 },
-      { name: "Bootstrap & Tailwind", rating: 3.5 },
       { name: "Next.js, Vue", rating: 3 },
       { name: "Solidity", rating: 3 },
     ],
     DevOps: [
       { name: "Docker, Linux, WSL", rating: 3.5 },
       { name: "AWS, Digital Ocean", rating: 3 },
-      { name: "NGINX", rating: 3.5 },
+      { name: "NGINX, Git", rating: 3 },
     ],
     "AI Tools": [
       { name: "AI IDEs, AI Agent Skills", rating: 4 },
