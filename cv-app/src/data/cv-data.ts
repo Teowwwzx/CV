@@ -2,7 +2,7 @@ export const cvData = {
   personalInfo: {
     name: "Teow Zhen Xiang",
     role: "IT (Fintech) Student | Aspiring DevOps & Full Stack Developer",
-    bio: "Hello, I'm an IT (Fintech) student and a self-motivated person that like to explore different knowledge. Also, passionate in solving problem with teamwork with a track records of organizing successful high-quality!",
+    bio: "Welcome to my CV! I'm a self-motivated person that like to explore different knowledge and really excited to solve provlem with a team.",
     phone: "+601110662491",
     website: "cv.thedzx.site",
     github: "https://github.com/Teowwwzx",
@@ -67,6 +67,7 @@ export const cvData = {
       company: "Alitec Solutions Sdn Bhd",
       role: "DevOps Degree Intern",
       images: ["/degree-rating-1.png", "/degree-rating-2.png"],
+      learnedSkills: ["Python", "AWS, CloudPepper, Digital Ocean", "Docker", "Linux, WSL", "NGINX", "N8N, CheckMK, EvolutionAPI"],
       details: [
         "Manage Cloud Servers such as AWS, Digital Ocean and Cloudpepper.",
       ],
@@ -79,6 +80,7 @@ export const cvData = {
       company: "Mid Valley Southkey",
       role: "Tesla Promoter",
       images: ["/tesla.mp4"],
+      learnedSkills: ["Improve English Speaking xD"],
       details: [
         "Promote Tesla and Conducted Customer Surveys (Achieved Full KPI)",
       ],
@@ -90,6 +92,7 @@ export const cvData = {
       company: "Techtics Solutions Sdn Bhd",
       role: "Full Stack Diploma Intern",
       images: ["/diploma-rating-1.png"],
+      learnedSkills: ["Vue & Laravel (MVC)", "Bootstrap, Tailwind CSS", "Email Queue", "OAuth & 2FA", "Git", "Hardhat & Solidity", "Web 3"],
       details: [
         "Develop a Membership System using Laravel, Bootstrap and Tailwind.",
       ],
@@ -98,9 +101,9 @@ export const cvData = {
   ],
   projects: [
     {
-      title: "FYP - Event Management Platform (I Love AI)",
+      title: "FYP - Bridge the Gap of Student-Industry Expert",
       year: "2026",
-      description: "Almost a production-ready project with Admin Dashboard. Fully handmade database schema.",
+      description: "Nearly a production grade project with Admin Dashboard (I❤️AI) but fully handmade database schema. This is a platform that allows student to book expert speakers efficiently and systematically without cold email and messy flow. This idea was inspired from my AI x BC event xD.",
       tech: [
         "Next.js",
         "FastAPI",
@@ -119,19 +122,10 @@ export const cvData = {
       },
     },
     {
-      title: "Diploma Intern Assessment in 2023 (No AI)",
-      year: "2023",
-      description: "Fully Handmade with pure HTML & CSS",
-      tech: ["HTML5", "CSS3"],
-      previewUrl: "/Fintech/OVERWATCH/index.html",
-      image: "/fintech.png",
-      link: "https://github.com/teowzx1/Fintech-Landing-Page",
-    },
-    {
       title: "Simple Membership System",
-      year: "202x",
-      description: "Production Project Before",
-      tech: ["Flask"],
+      year: "2024",
+      description: "Production Project Before.",
+      tech: ["Flask", "Bootstrap", "Resend"],
       previewUrl: "https://affiliateloginsystem-production.up.railway.app/admin/dashboard",
       image: "/affiliate.png",
       link: "https://affiliateloginsystem-production.up.railway.app/admin/dashboard",
@@ -141,8 +135,27 @@ export const cvData = {
       },
     },
     {
+      title: "xxx Membership System (Diploma Intern)",
+      year: "2023",
+      description: "Production Project. Intern?🙂‍↔️ Full Time😏",
+      tech: ["Tech Stacks (Web 2) Mentioned Above"],
+      previewUrl: "https://cv.thedzx.site",
+      // image: "/fintech.png",
+      link: "https://thedzx.site",
+
+    },
+    {
+      title: "Static Page (Diploma Intern Assestment",
+      year: "2023",
+      description: "Fully Handmade with pure HTML & CSS (0️⃣ AI)",
+      tech: ["HTML", "CSS"],
+      previewUrl: "/Fintech/OVERWATCH/index.html",
+      image: "/fintech.png",
+      link: "https://github.com/teowzx1/Fintech-Landing-Page",
+    },
+    {
       title: "Payroll Management System",
-      year: "2026",
+      year: "2025",
       description: "CLI Only, No GUI",
       tech: ["Java"],
       previewUrl: "https://github.com/Teowwwzx/DCOMToSchool.git",
@@ -152,18 +165,18 @@ export const cvData = {
     
     {
       title: "Decentralized Supply Chain Marketplaces",
-      year: "2026",
-      description: "Bad Project",
+      year: "2025",
+      description: "School-Grade Project (Bad)",
       tech: ["Next.js", "Solidity"],
       previewUrl: "/Fintech/OVERWATCH/index.html",
       image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://github.com/teowzx1/Decentralized-Supply-Chain-Marketplaces",
     },
     {
-      title: "Learning Platform",
+      title: "Learning Platform & Medical Center System",
       year: "2025",
-      description: "Bad Project",
-      tech: ["ASP.NET", "Bootstrap"],
+      description: "School-Grade Project (Bad)",
+      tech: ["ASP.NET", "Bootstrap", "PHP"],
       previewUrl: "/Fintech/OVERWATCH/index.html",
       image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://github.com/teowzx1/Learning-Platform",
@@ -174,28 +187,33 @@ export const cvData = {
     {
       name: "AI x Blockchain Panel Discussion",
       year: "2025",
-      tags: ["leadership", "marketing"],
+      tags: ["Marketing to B & C", "Event Flow, Topic, Discussion, Moderator Speech Planning", "Speaker & Sponsor Communication", "Clubs Collaboration", "Parking Allocation", "Mail Merge (YAMM)"],
       description:
-        "Handle Find Speaker & Business & Sponsor People, Collaborate with Clubs, Marketing, All Paperwork like Emails & Speech, Event Flow & Topic",
-      // image: "/Fintech/OVERWATCH/img/trading-indices.png",
+        "Secured 1+2 Speakers & 10+ Business peoples & 1 Sponsor with a total of 100+ participants. Collaborated with Blockchain, Ai, Enterprise, SEGI Clubs. Overall very good feedback but ups and downs behind the scene due to the direction conflict between leader and me 😑",
       link: "https://www.instagram.com/reel/DNDH1mFzKV9/",
-      video: "https://www.instagram.com/reel/DNDH1mFzKV9/",
     },
-    { name: "MAFC", year: "2023", tags: ["teamwork"] },
     {
-      name: "APU Championship",
+      name: "Moon Autumn Festival in APU 2023",
+      year: "2023",
+      description: "Afternoon open-world murder mystery game with F&B and Entertainment booths with hidden clues, Night stage play to continue the morning's storyline. A super heavy workload but the team managed to make it happen in the historical club event of APU. Love the passion and the creativity of the team ❤️",
+      tags: ["Booth Architecture (S23 Ultra)", "Video Editing (JianYing)", "Maps (DUNGEONFOG)", "No Sleep Event zzz"],
+      images: ["/Booths/1.jpg","/Booths/2.jpg", "/Booths/3.jpg", "/Booths/map-apu-venue.jpeg", ],
+      video: "/mafc.mp4",
+    },
+    {
+      name: "APU Championship 2022",
       year: "2022",
-      tags: ["planning team", "media"],
+      tags: ["Creative Design (Canva)", "Video Editing (PR)", "Broadcast (OBS + Twitch)", "Marketing", "Commentator Communication", "Integrate Pick & Ban System (Github)"],
       description:
-        "Handle Design & Video Editing, Marketing, Integrate Pick & Ban System (Github), Find Commentator ",
+        "A profesisonal online competition with highest quality in term of participants (100+), prize pool, graphic, pick and ban system UI, and commentator from Indonesia compared to same batch even club. Feel proud 😎",
       video: "/obs-stream.mp4",
       link: "https://www.instagram.com/tv/CdC42Rqlz1A/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     },
     { 
       name: "Malaysia 24 Festive Drums National Championship",
       year: "2019 & 2024",
-      description: "No money, no support, and no path to victory—but we had heart. I led our small team from a Sekolah Kebangsaan to fight against the Chinese Independent High School and win a Silver Medal. Competing against the best schools with nothing but our passion was a struggle, but winning was a miracle we created together.",
-      tags: ["leadership", "creative"],
+      description: "No money, no support, and no path to victory—but we had heart. As one of the senior, led the team from Sekolah Menengah Kebangsaan to fight against the Chinese Independent High School. A miracle, the team created together and won the silver medal with huge support from teacher & coach ❤️",
+      tags: ["Leadership", "Creative"],
       image: "/24-festive-drum-2022.jpg",
       link: "https://youtu.be/VyPBwZTXmTs?si=LpWeSt0XQtLRK4-d&t=63",
       media: [
@@ -212,19 +230,42 @@ export const cvData = {
   ],
   goals: [
     {
-      name: "Web 2 , AI Development Knowledge",
-      description: "Advance Web 2 Development: Redis, Celery, Neo4j and AI: Fine Tuning",
-      progress: 55,
+      name: "Overhaul FYP with Tool & Community (Q1)",
+      description:
+        "Learn & Deliver an advance production grade FYP in 1 month with the help of AI Agent.",
+      categories: [
+        {
+          label: "System Design & Architecture",
+          items: ["Monorepo", "Redis", "Celery Worker", "RabbitMQ", "EDA", "NGINX"],
+        },
+        {
+          label: "Backend",
+          items: ["FastAPI async APIs", "WebSocket"],
+        },
+        {
+          label: "AI",
+          items: ["Vector Embedding, RAG"],
+        },
+        {
+          label: "DevOps",
+          items: ["Docker", "CI/CD", "DigitalOcean + Vercel hosting"],
+        },
+        {
+          label: "3rd Party",
+          items: ["Mailgun / SendGrid"],
+        }
+      ],
+      progress: 45,
     },
     {
-      name: "Web 3, Financial, Investment Knowledge",
-      description: "Dapp on Public Chain, Quantitative & Scripts of Market",
+      name: "Web 3, Financial & Investment Knowledge (Q2)",
+      description: "Dapp on Public Chain, Quantitative Script",
       progress: 20,
     },
     {
-      name: "Mobile Development Knowledge",
+      name: "Mobile Development (Q3)",
       description: "Flutter & Swift",
-      progress: 15,
+      progress: 20,
     },
   ],
 };

@@ -79,9 +79,26 @@ type LeadershipActivity = {
   tags?: string[];
 };
 
+type Experience = {
+  id: string;
+  year: string;
+  duration: string;
+  company: string;
+  role: string;
+  images?: string[];
+  details?: string[];
+  learnedSkills?: string[];
+};
+
+type GoalCategory = {
+  label: string;
+  items: string[];
+};
+
 type Goal = {
   name: string;
   description: string;
+  categories?: GoalCategory[];
   progress: number;
 };
 
@@ -106,6 +123,7 @@ export default function Home() {
   const expertiseEntries = Object.entries(cvData.expertise) as [string, Skill[]][];
   const leadershipEntries = cvData.leadership as unknown as LeadershipActivity[];
   const goals = cvData.goals as unknown as Goal[];
+  const experience = cvData.experience as unknown as Experience[];
 
   const whatsappPhoneDigits = cvData.personalInfo.phone.replace(/\D/g, "");
   const whatsappUrl = `https://wa.me/${whatsappPhoneDigits}?text=${encodeURIComponent(
@@ -143,7 +161,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50 bg-dot-pattern text-slate-800 font-sans selection:bg-blue-100 selection:text-blue-900">
       <div className="bg-yellow-100 border-b border-yellow-200 text-yellow-800 px-4 py-3 text-center sticky top-0 z-50 shadow-sm">
         <p className="text-sm md:text-base font-medium flex items-center justify-center gap-2">
-           🚧 <span className="font-bold">In Progress:</span>This CV was built in just 30 minutes.
+           🚧 <span className="font-bold">Website In Progress</span>
         </p>
       </div>
       <ImageGalleryModal
@@ -249,7 +267,7 @@ export default function Home() {
               </h2>
 
               <div className="relative border-l-2 border-slate-100 ml-3 space-y-12">
-                {cvData.experience.map((exp, index) => (
+                {experience.map((exp, index) => (
                   <div key={index} className="relative pl-8 group">
                     <span className="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-white border-4 border-blue-500 group-hover:scale-110 transition-transform" />
 
@@ -259,6 +277,18 @@ export default function Home() {
                     </div>
 
                     <h4 className="text-lg text-blue-600 font-medium mb-4">{exp.company}</h4>
+                    {exp.learnedSkills && exp.learnedSkills.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {exp.learnedSkills.map((skill) => (
+                          <span
+                            key={`${exp.id}-${skill}`}
+                            className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    )}
 
                     {/* Replaced Bullet Points with Images */}
                     {exp.images && exp.images.length > 0 ? (
@@ -394,7 +424,7 @@ export default function Home() {
                                 {project.title}
                               </h3>
                               <span className={cn(
-                                "text-sm font-medium bg-blue-400 text-white px-2 py-1 rounded-md border border-slate-100 shrink-0",
+                                "text-sm font-medium bg-slate-600 text-white px-2 py-1 rounded-md border border-slate-100 shrink-0",
                                 isBadProject && "text-xs"
                               )}>
                                 {project.year}
@@ -417,7 +447,7 @@ export default function Home() {
                           
                           <div className="flex flex-wrap gap-2 mt-auto">
                             {project.tech.map((tech, idx) => (
-                              <span key={idx} className="text-xs font-medium text-orange-600 bg-orange-50 px-2.5 py-1 rounded-full">
+                              <span key={idx} className="text-xs font-semibold text-slate-100 bg-indigo-600 px-2.5 py-1 rounded-full">
                                 {tech}
                               </span>
                             ))}
@@ -438,7 +468,7 @@ export default function Home() {
             {/* Leadership Section */}
             <motion.section variants={item} className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
               <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                <Award className="text-blue-600" size={24} /> Leadership & Activities
+                <Award className="text-blue-600" size={24} /> Problem Solving & Leadership
               </h2>
               <div className="grid grid-cols-1 gap-4">
                 {leadershipEntries.slice(0, 4).map((activity, idx) => (
@@ -457,7 +487,7 @@ export default function Home() {
                         {activity.tags?.length ? (
                           <div className="flex flex-wrap gap-2 mt-3">
                             {activity.tags.map((tag) => (
-                              <span key={tag} className="text-[10px] font-semibold text-slate-700 bg-white border border-slate-200 px-2 py-0.5 rounded-full">
+                              <span key={tag} className="text-[12px] font-semibold text-white bg-pink-400 border border-slate-200 px-2 py-1 rounded-full">
                                 {tag}
                               </span>
                             ))}
@@ -666,19 +696,40 @@ export default function Home() {
                       <div className="bg-gradient-to-r from-amber-50 via-amber-100 to-amber-200 p-6">
                         <h3 className="text-lg font-bold text-amber-900 mb-1">{goal.name}</h3>
                         <p className="text-amber-800 text-sm">{goal.description}</p>
+                        {goal.categories && goal.categories.length > 0 && (
+                          <div className="mt-4 grid gap-3">
+                            {goal.categories.map((category) => (
+                              <div key={category.label} className="flex flex-col gap-2">
+                                <div className="text-[11px] font-bold tracking-wide text-amber-900/70 uppercase">
+                                  {category.label}
+                                </div>
+                                <div className="flex flex-wrap gap-2">
+                                  {category.items.map((text) => (
+                                    <span
+                                      key={`${category.label}-${text}`}
+                                      className="text-xs px-2.5 py-1 rounded-full bg-amber-600 border-amber-200 text-white"
+                                    >
+                                      {text}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
                       <div className="p-6 bg-white">
                         <div className="flex items-center gap-3">
-                          <div className="flex-1 h-2 bg-amber-100 rounded-full overflow-hidden">
+                          <div className="flex-1 h-2 bg-indigo-100 rounded-full overflow-hidden">
                             <motion.div
                               initial={{ scaleX: 0 }}
                               animate={{ scaleX: goalsInView ? goal.progress / 100 : 0 }}
                               transition={{ duration: 1, ease: "easeOut" }}
-                              className="h-full bg-amber-500 rounded-full origin-left"
+                              className="h-full bg-indigo-600 rounded-full origin-left"
                               style={{ width: "100%" }}
                             />
                           </div>
-                          <span className="text-xs font-semibold text-amber-700 min-w-[42px] text-right">
+                          <span className="text-xs font-semibold text-indigo-700 min-w-[42px] text-right">
                             {goal.progress}%
                           </span>
                         </div>

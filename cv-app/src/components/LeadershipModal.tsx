@@ -88,14 +88,16 @@ export default function LeadershipModal({
             </div>
 
             <div className="p-8 md:p-10 grid gap-6">
-              {leadership.map((activity, index) => (
+              {leadership.map((activity, index) => {
+                const thumbnail = activity.image ?? activity.images?.[0];
+                return (
                 <div 
                   key={index}
                   className="bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-100 flex flex-col md:flex-row gap-6 items-start md:items-center transition-all hover:border-blue-200 hover:shadow-sm"
                 >
                   <div className="w-16 h-16 bg-white rounded-xl overflow-hidden flex items-center justify-center shrink-0 border border-slate-100 shadow-sm">
-                    {activity.image ? (
-                      <img src={activity.image} alt="" className="w-full h-full object-cover" />
+                    {thumbnail ? (
+                      <img src={thumbnail} alt="" className="w-full h-full object-cover" />
                     ) : activity.video ? (
                       <div className="w-full h-full bg-slate-900 flex items-center justify-center text-white">
                         <Video size={22} />
@@ -161,7 +163,8 @@ export default function LeadershipModal({
                      </div>
                   </div>
                 </div>
-              ))}
+              );
+              })}
             </div>
           </motion.div>
 
