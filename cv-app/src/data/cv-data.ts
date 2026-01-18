@@ -191,14 +191,14 @@ export const cvData = {
       tags: ["Marketing to B & C", "Event Flow, Topic, Discussion, Moderator Speech Planning", "Speaker & Sponsor Communication", "Clubs Collaboration", "Parking Allocation", "Mail Merge (YAMM)"],
       description:
         "Secured 1+2 Speakers & 10+ Business peoples & 1 Sponsor with a total of 100+ participants. Collaborated with Blockchain, Ai, Enterprise, SEGI Clubs. Overall very good feedback but ups and downs behind the scene due to the direction conflict between leader and me 😑",
-      link: "https://www.instagram.com/reel/DNDH1mFzKV9/",
+        link: "https://www.instagram.com/reel/DNDH1mFzKV9/",
     },
     {
       name: "Moon Autumn Festival in APU 2023",
       year: "2023",
       description: "Afternoon open-world murder mystery game with F&B and Entertainment booths with hidden clues, Night stage play to continue the morning's storyline. A super heavy workload but the team managed to make it happen in the historical club event of APU. Love the passion and the creativity of the team ❤️",
       tags: ["Booth Architecture (S23 Ultra)", "Video Editing (JianYing)", "Maps (DUNGEONFOG)", "No Sleep Event zzz"],
-      images: ["/Booths/1.jpg","/Booths/2.jpg", "/Booths/3.jpg", "/Booths/map-apu-venue.jpeg", ],
+      images: ["/Booths/2.jpg","/Booths/3.jpg", "/Booths/map-apu-venue.jpeg", ],
       video: "/mafc.mp4",
     },
     {
