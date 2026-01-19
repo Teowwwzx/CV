@@ -125,7 +125,7 @@ export const cvData = {
     {
       title: "Simple Membership System",
       year: "2024",
-      description: "Production Project Before.",
+      description: "Production Project Before. This system is a leader-member that allow user register with a leader referral code and ranking system based on the number of members they have.",
       tech: ["Flask", "Bootstrap", "Resend"],
       previewUrl: "https://affiliateloginsystem-production.up.railway.app/admin/dashboard",
       image: "/affiliate.png",
@@ -157,8 +157,8 @@ export const cvData = {
     {
       title: "Payroll Management System",
       year: "2025",
-      description: "CLI Only, No GUI",
-      tech: ["Java"],
+      description: "CLI Only, No GUI. Simple CRUD and payroll calculation.",
+      tech: ["Java", "AWS (EC2)", "Neon", "Multithreading, Serialization, Distributed System"],
       previewUrl: "https://github.com/Teowwwzx/DCOMToSchool.git",
       image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://github.com/Teowwwzx/DCOMToSchool.git",
@@ -168,36 +168,36 @@ export const cvData = {
       title: "Decentralized Supply Chain Marketplaces",
       year: "2025",
       description: "School-Grade Project (Bad)",
-      tech: ["Next.js", "Solidity"],
+      tech: ["Next.js", "Solidity", "MetaMask"],
       previewUrl: "/Fintech/OVERWATCH/index.html",
-      image: "/Fintech/OVERWATCH/img/trading-indices.png",
+      image: "/bcd-1.png",
       link: "https://github.com/teowzx1/Decentralized-Supply-Chain-Marketplaces",
     },
     {
       title: "Learning Platform & Medical Center System",
-      year: "2025",
+      year: "2023",
       description: "School-Grade Project (Bad)",
-      tech: ["ASP.NET", "Bootstrap", "PHP"],
+      tech: ["ASP.NET", "Bootstrap", "PHP", "Stripe Payment"],
       previewUrl: "/Fintech/OVERWATCH/index.html",
       image: "/Fintech/OVERWATCH/img/trading-indices.png",
       link: "https://github.com/teowzx1/Learning-Platform",
     },
-    
   ],
   leadership: [
     {
       name: "AI x Blockchain Panel Discussion",
       year: "2025",
-      tags: ["Marketing to B & C", "Event Flow, Topic, Discussion, Moderator Speech Planning", "Speaker & Sponsor Communication", "Clubs Collaboration", "Parking Allocation", "Mail Merge (YAMM)"],
+      tags: ["Marketing to B & C", "Event Flow, Topic, Discussion, Moderator Speech Planning", "Speaker & Sponsor Communication", "Clubs Collaboration", "Mail Merge (YAMM)"],
       description:
         "Secured 1+2 Speakers & 10+ Business peoples & 1 Sponsor with a total of 100+ participants. Collaborated with Blockchain, Ai, Enterprise, SEGI Clubs. Overall very good feedback but ups and downs behind the scene due to the direction conflict between leader and me 😑",
-        link: "https://www.instagram.com/reel/DNDH1mFzKV9/",
+      link: "https://www.instagram.com/reel/DNDH1mFzKV9/",
+      video: "/ch.mp4",
     },
     {
       name: "Moon Autumn Festival in APU 2023",
       year: "2023",
       description: "Afternoon open-world murder mystery game with F&B and Entertainment booths with hidden clues, Night stage play to continue the morning's storyline. A super heavy workload but the team managed to make it happen in the historical club event of APU. Love the passion and the creativity of the team ❤️",
-      tags: ["Booth Architecture (S23 Ultra)", "Video Editing (JianYing)", "Maps (DUNGEONFOG)", "No Sleep Event zzz"],
+      tags: ["Booth Architecture (S23 Ultra)", "Video Editing (JianYing)", "Maps (DUNGEONFOG)"],
       images: ["/Booths/2.jpg","/Booths/3.jpg", "/Booths/map-apu-venue.jpeg", ],
       video: "/mafc.mp4",
     },
@@ -222,12 +222,24 @@ export const cvData = {
         "https://youtu.be/VyPBwZTXmTs?si=LpWeSt0XQtLRK4-d&t=63",
       ],
     },
-    { name: "JB Drums Holiday Camp", 
-      year: "2022",
+    { 
+      name: "JB Drums Holiday Camp & Volunteer 618 Drums", 
+      year: "2022 & 2022",
       description:
-        "Plan Activities",
-      tags: ["creative", "teamwork"] 
+        "Plan Game Activities",
+      tags: ["Teamwork", "Creative"],
+      link: "https://youtu.be/QBsrsC2K9cY?si=siToXNh0LLRb8XIo",
+      image: "/jbdrums.jpg",
     }
+  ],
+  other: [
+    {
+      name: "Night Market & Small Stall",
+      year: "2025 & 2025",
+      description: "Making dessert is not my strength xD. Great numbers during night market so decided to rent a small stall and hire part-time staff. Morning intern, night go stall, no time to develop new flavour and QC. After 3 months, ended up this business with great experience (At least I can make desssert now)😬",
+      tags: ["Dessert (Ice Cream Mochi)", "Mathca Oreo (Damm nice)", "Small Business"],
+      images: ["/mochi.png", "/ksl-stall.jpeg", "/ksl.jpeg"],
+    },
   ],
   goals: [
     {

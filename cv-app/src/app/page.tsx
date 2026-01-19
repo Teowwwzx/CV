@@ -79,6 +79,8 @@ type LeadershipActivity = {
   tags?: string[];
 };
 
+type Other = LeadershipActivity;
+
 type Experience = {
   id: string;
   year: string;
@@ -122,6 +124,7 @@ export default function Home() {
   const projects = cvData.projects as unknown as Project[];
   const expertiseEntries = Object.entries(cvData.expertise) as [string, Skill[]][];
   const leadershipEntries = cvData.leadership as unknown as LeadershipActivity[];
+  const otherEntries = cvData.other as unknown as Other[];
   const goals = cvData.goals as unknown as Goal[];
   const experience = cvData.experience as unknown as Experience[];
 
@@ -293,7 +296,7 @@ export default function Home() {
                     {/* Replaced Bullet Points with Images */}
                     {exp.images && exp.images.length > 0 ? (
                       <div className="flex flex-wrap gap-3 mb-4">
-                        {exp.images.slice(0, 4).map((img, idx) => {
+                        {exp.images.slice(0, 5).map((img, idx) => {
                           if (!img) return null;
                           const isPdf = img.toLowerCase().endsWith('.pdf');
                           const isVideo = img.toLowerCase().endsWith('.mp4');
@@ -471,7 +474,7 @@ export default function Home() {
                 <Award className="text-blue-600" size={24} /> Problem Solving & Leadership
               </h2>
               <div className="grid grid-cols-1 gap-4">
-                {leadershipEntries.slice(0, 4).map((activity, idx) => (
+                {leadershipEntries.slice(0, 5).map((activity, idx) => (
                   <div
                     key={idx}
                     className="p-5 rounded-2xl bg-slate-50 hover:bg-blue-50 transition-colors border border-slate-100"
@@ -488,6 +491,159 @@ export default function Home() {
                           <div className="flex flex-wrap gap-2 mt-3">
                             {activity.tags.map((tag) => (
                               <span key={tag} className="text-[12px] font-semibold text-white bg-pink-400 border border-slate-200 px-2 py-1 rounded-full">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        ) : null}
+                        {activity.description ? (
+                          <p className="text-sm text-slate-600 mt-3 leading-relaxed line-clamp-3">
+                            {activity.description}
+                          </p>
+                        ) : null}
+                        {(() => {
+                          const rawMedia = (
+                            activity.media?.length
+                              ? activity.media
+                              : [
+                                  ...(activity.images ?? []),
+                                  activity.image,
+                                  activity.video,
+                                  activity.link,
+                                ]
+                          ).filter(Boolean) as string[];
+
+                          const media = Array.from(new Set(rawMedia));
+                          if (!media.length) return null;
+
+                          const items = media.map((url) => {
+                            const lower = url.toLowerCase();
+                            const isInstagram = lower.includes("instagram.com");
+                            const isYoutube = lower.includes("youtu.be") || lower.includes("youtube.com");
+                            const isPdf = lower.endsWith(".pdf");
+                            const isVideo = lower.endsWith(".mp4");
+                            const isExternal = /^https?:\/\//i.test(url);
+                            const kind: "instagram" | "youtube" | "pdf" | "video" | "image" | "link" =
+                              isInstagram
+                                ? "instagram"
+                                : isYoutube
+                                  ? "youtube"
+                                  : isPdf
+                                    ? "pdf"
+                                    : isVideo
+                                      ? "video"
+                                      : isExternal
+                                        ? "link"
+                                        : "image";
+                            return { url, kind };
+                          });
+
+                          const galleryMedia = items
+                            .filter((item) => item.kind === "image" || item.kind === "video")
+                            .map((item) => item.url);
+
+                          const instagramThumbUrl = items.find((item) => item.kind === "image")?.url;
+
+                          return (
+                            <div className="flex flex-wrap gap-3 mt-4">
+                              {items.slice(0, 4).map((item, itemIndex) => {
+                                const onClick = () => {
+                                  if (item.kind === "instagram" || item.kind === "youtube" || item.kind === "link" || item.kind === "pdf") {
+                                    window.open(item.url, "_blank", "noopener,noreferrer");
+                                    return;
+                                  }
+                                  const galleryIndex = galleryMedia.indexOf(item.url);
+                                  if (galleryIndex >= 0) openGallery(galleryMedia, galleryIndex, activity.name);
+                                };
+
+                                return (
+                                  <motion.div
+                                    key={`${item.url}-${itemIndex}`}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={onClick}
+                                    className="cursor-pointer rounded-lg overflow-hidden border border-slate-200 shadow-sm w-24 h-24 relative flex items-center justify-center bg-slate-50"
+                                  >
+                                    {item.kind === "image" ? (
+                                      <Image src={item.url} alt="" fill sizes="96px" className="object-cover" />
+                                    ) : item.kind === "video" ? (
+                                      <div className="relative w-full h-full">
+                                        <video src={item.url} className="w-full h-full object-cover" muted playsInline />
+                                        <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                                          <div className="w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                                            <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-white border-b-[5px] border-b-transparent ml-1" />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ) : item.kind === "instagram" ? (
+                                      instagramThumbUrl ? (
+                                        <div className="relative w-full h-full">
+                                          <Image src={instagramThumbUrl} alt="" fill sizes="96px" className="object-cover" />
+                                          <div className="absolute inset-0 bg-black/10" />
+                                          <div className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-white/25 backdrop-blur-sm flex items-center justify-center text-white">
+                                            <Instagram size={18} />
+                                          </div>
+                                        </div>
+                                      ) : (
+                                        <div className="w-full h-full bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 flex items-center justify-center text-white">
+                                          <Instagram size={20} />
+                                        </div>
+                                      )
+                                    ) : item.kind === "youtube" ? (
+                                      <div className="w-full h-full bg-gradient-to-br from-red-600 to-red-500 flex items-center justify-center text-white">
+                                        <div className="flex flex-col items-center gap-1 text-center px-2">
+                                          <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                                            <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1" />
+                                          </div>
+                                          <span className="text-[10px] font-semibold leading-tight">YouTube</span>
+                                        </div>
+                                      </div>
+                                    ) : item.kind === "pdf" ? (
+                                      <div className="flex flex-col items-center gap-1 text-slate-500 p-2 text-center">
+                                        <FileText size={22} className="text-red-500" />
+                                        <span className="text-[10px] leading-tight line-clamp-2">PDF</span>
+                                      </div>
+                                    ) : (
+                                      <div className="flex flex-col items-center gap-1 text-slate-600 p-2 text-center">
+                                        <ExternalLink size={18} className="text-slate-500" />
+                                        <span className="text-[10px] leading-tight line-clamp-2">Link</span>
+                                      </div>
+                                    )}
+                                  </motion.div>
+                                );
+                              })}
+                            </div>
+                          );
+                        })()}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+
+            <motion.section variants={item} className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+              <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <Award className="text-blue-600" size={24} /> Others
+              </h2>
+              <div className="grid grid-cols-1 gap-4">
+                {otherEntries.slice(0, 4).map((activity, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 rounded-2xl bg-slate-50 hover:bg-blue-50 transition-colors border border-slate-100"
+                  >
+                    <div className="flex items-start gap-5">
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                          <div className="min-w-0">
+                            <div className="font-bold text-slate-900 text-lg leading-snug">{activity.name}</div>
+                            <div className="text-sm text-slate-500 mt-1">{activity.year}</div>
+                          </div>
+                        </div>
+                        {activity.tags?.length ? (
+                          <div className="flex flex-wrap gap-2 mt-3">
+                            {activity.tags.map((tag) => (
+                              <span key={tag} className="text-[12px] font-semibold text-white bg-green-500 border border-slate-200 px-2 py-1 rounded-full">
                                 {tag}
                               </span>
                             ))}
