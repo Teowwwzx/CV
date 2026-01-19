@@ -2,6 +2,7 @@
 
 import { Suspense, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { ALLOWED_COMPANIES } from "@/data/constants";
 
 function AccessForm() {
   const router = useRouter();
@@ -15,26 +16,10 @@ function AccessForm() {
     e.preventDefault();
     setError("");
 
-    // .trim() removes outer spaces
-    // .toLowerCase() makes it case-insensitive
-    // .replace(/\s+/g, ' ') collapses multiple internal spaces into one
     const input = company.trim().toLowerCase().replace(/\s+/g, ' ');
     
-    const allowedCompanies = [
-      "bybit", 
-      "dcconnect", 
-      "dcconnectglobal", 
-      "dcconnect global", // Added with space for flexibility
-      "tapway", 
-      "google", 
-      "jpmorgan", 
-      "jp morgan", 
-      "jpm", 
-      "horse year"
-    ];
-
-    if (!allowedCompanies.includes(input)) {
-      setError('Access denied. Please enter your company name.');
+    if (!ALLOWED_COMPANIES.includes(input)) {
+      setError('Access denied. Please enter your company name or my school name.');
       return;
     }
 

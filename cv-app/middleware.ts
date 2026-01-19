@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { ALLOWED_COMPANIES } from "@/data/constants";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -13,9 +14,8 @@ export function middleware(request: NextRequest) {
   }
 
   const companyAccess = request.cookies.get("company_access")?.value ?? "";
-  const allowedCompanies = ["bybit", "dcconnect", "dcconnectglobal", "dcconnect global", "tapway", "google", "jpmorgan", "jp morgan", "jpm", "horse year"];
   
-  if (allowedCompanies.includes(companyAccess.toLowerCase())) {
+  if (ALLOWED_COMPANIES.includes(companyAccess.toLowerCase())) {
     return NextResponse.next();
   }
 
