@@ -30,6 +30,12 @@ export const ALLOWED_COMPANIES = [
   "ctypto.com",
   "etherscan",
   "adyen",
+  "moneylion",
+  "cfi",
+  "nets",
+  "mastercard",
+  "binance",
+  "bank negara",
   "apu",
   "asia pacific university",
   "horse year"
