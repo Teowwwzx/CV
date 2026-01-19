@@ -34,17 +34,17 @@ function AccessForm() {
       <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-2xl p-6 shadow-2xl">
         <h1 className="text-2xl font-bold mb-2">Access Required</h1>
         <p className="text-white/70 text-sm mb-6">
-          Please enter your company name to continue.
+          Please enter your company name or my school name to continue.
         </p>
 
         <form onSubmit={submit} className="space-y-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-white/80">Company</label>
+            <label className="text-sm font-medium text-white/80">Company OR School</label>
             <input
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               className="w-full rounded-xl bg-white/10 border border-white/10 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="e.g. apu"
+              placeholder="e.g. sunway"
               autoFocus
             />
           </div>
