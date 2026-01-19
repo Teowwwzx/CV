@@ -125,7 +125,7 @@ export const cvData = {
     {
       title: "Simple Membership System",
       year: "2024",
-      description: "Production Project Before. This system is a leader-member that allow user register with a leader referral code and ranking system based on the number of members they have.",
+      description: "Production Project Before. This system allow member register with a leader referral code and ranking system based on the number of members they have.",
       tech: ["Flask", "Bootstrap", "Resend"],
       previewUrl: "https://affiliateloginsystem-production.up.railway.app/admin/dashboard",
       image: "/affiliate.png",
