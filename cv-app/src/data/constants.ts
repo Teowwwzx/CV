@@ -28,7 +28,6 @@ export const ALLOWED_COMPANIES = [
   "wise",
   "coingecko",
   "ctypto.com",
-  "crypto.com",
   "etherscan",
   "adyen",
   "apu",
