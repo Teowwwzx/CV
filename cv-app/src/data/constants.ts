@@ -32,5 +32,6 @@ export const ALLOWED_COMPANIES = [
   "etherscan",
   "adyen",
   "apu",
+  "asia pacific university",
   "horse year"
 ];
