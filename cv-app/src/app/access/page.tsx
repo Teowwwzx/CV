@@ -39,7 +39,7 @@ function AccessForm() {
 
         <form onSubmit={submit} className="space-y-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-white/80">Company OR School</label>
+            <label className="text-sm font-medium text-white/80">Company or School</label>
             <input
               value={company}
               onChange={(e) => setCompany(e.target.value)}
