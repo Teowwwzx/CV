@@ -36,6 +36,9 @@ export const ALLOWED_COMPANIES = [
   "mastercard",
   "binance",
   "bank negara",
+  "ant",
+  "ant group",
+  "ant international"
   "apu",
   "asia pacific university",
   "horse year"
