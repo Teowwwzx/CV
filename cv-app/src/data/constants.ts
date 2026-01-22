@@ -38,7 +38,7 @@ export const ALLOWED_COMPANIES = [
   "bank negara",
   "ant",
   "ant group",
-  "ant international"
+  "ant international",
   "apu",
   "asia pacific university",
   "horse year"
